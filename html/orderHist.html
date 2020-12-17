@@ -1,0 +1,11 @@
+<div class="order-history-container" style="position: absolute!important; top: 0; right: 100px; width:200px;"> 
+	<div style="margin-left:30px;" id="orderHistoryBut" class="primary button"> 
+		<span class="button-label" onclick="orderHistoryClick();">Order History</span>
+	</div>
+</div>
+<script>
+  function orderHistoryClick() {
+    email = document.querySelector('#main-content-region > div > div.order-details-container > div.order-details-card.card > div.order-details > div:nth-child(2) > div:nth-child(5) > div').innerHTML;
+    window.open('https://shop.rosieapp.com/control_panel/orders?order=pickup_slots.start_time_desc&q%5Buser_email_cont%5D=' + email + '&scope=order_history');
+  }
+</script>
