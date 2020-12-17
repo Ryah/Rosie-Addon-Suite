@@ -1,12 +1,16 @@
 // ==UserScript==
-// @name         Rosie Addons Suite
-// @namespace    http://ryah.org/
-// @match        https://retailers.rosieapp.com/*
-// @version      1.5
-// @description  Addons for Rosie Retailers because the site needs improvement
-// @author       Ryan Adame
-// @run-at       document-idle
-// @grant        GM_addStyle
+// @name            Rosie Addons Suite
+// @namespace       http://ryah.org/
+// @match           https://retailers.rosieapp.com/*
+// @version         1.5
+// @description     Addons for Rosie Retailers because the site needs improvement
+// @author          Ryan Adame
+// @require         https://raw.githubusercontent.com/Ryah/Rosie-Addon-Suite/main/js/waitForKeyElements_offline.js?token=ADSLCWNO4EKWE5GKXMDXQMC74UTFG
+// @require         https://raw.githubusercontent.com/Ryah/Rosie-Addon-Suite/main/js/jquery.min.js?token=ADSLCWK4K5GQYLWDDKSELKS74UTLI
+// @resource        customCSS https://raw.githubusercontent.com/Ryah/Rosie-Addon-Suite/main/css/styles.css?token=ADSLCWMBPA5QCOOABJR2XQS74UTUM
+// @resource        orderHistBut https://raw.githubusercontent.com/Ryah/Rosie-Addon-Suite/main/html/orderHist.html?token=ADSLCWOBV4KVNMHFGCWGUBC74UUIK
+// @run-at          document-idle
+// @grant           GM_addStyle
 // ==/UserScript==
 
 /*---
@@ -242,20 +246,9 @@ function formatNum(jNode) {
 //-----------------------------------------------Customer Order History------------------------------------------------------
 //===========================================================================================================================
 waitForKeyElements("#main-content-region > div > div.order-details-container > div.order-details-card.card > div.order-details > div:nth-child(2) > div:nth-child(5) > div", orderHistory)
+var orderHist = GM_getResourceText("orderHistBut");
 function orderHistory() {
-    $(document.querySelector('#page-cap-region > div > div > div.buttons-container > div')).append(`
-
-<div class="order-history-container" style="position: absolute!important; top: 0; right: 100px; width:200px;"> 
-	<div style="margin-left:30px;" id="orderHistoryBut" class="primary button"> 
-		<span class="button-label" onclick="orderHistoryClick();">Order History</span>
-	</div>
-</div>
-<script>
-  function orderHistoryClick() {
-    email = document.querySelector('#main-content-region > div > div.order-details-container > div.order-details-card.card > div.order-details > div:nth-child(2) > div:nth-child(5) > div').innerHTML;
-    window.open('https://shop.rosieapp.com/control_panel/orders?order=pickup_slots.start_time_desc&q%5Buser_email_cont%5D=' + email + '&scope=order_history');
-  }
-</script>`);
+    $(document.querySelector('#page-cap-region > div > div > div.buttons-container > div')).append(orderHist);
 }
 
 //===========================================================================================================================
@@ -303,7 +296,5 @@ $(document.querySelectorAll('.copyright')).contents().filter(function () {
 //Went for a Material Design look with Pure CSS since injecting ANY form of stylesheet into the header breaks the site's fonts.
 //Thanks, Rosie. Please start using !important.
 
-//12 to 24 hour Button + Button Container
-GM_addStyle(`
-		#test {}
-`);
+var customCSS = GM_getResourceText("customCSS");
+GM_addStyle(customCSS);
