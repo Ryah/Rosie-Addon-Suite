@@ -1,6 +1,7 @@
-//===========================================================================================================================
-//------------------------------------------------Setup----------------------------------------------------------------------
-//===========================================================================================================================
+/* -------------------------------------------------------------------------- */
+/*                                SECTION Setup                               */
+/* -------------------------------------------------------------------------- */
+
 //Calls tag section to add tag to footer once visible
 jQuery(document).ready(checkContainer);
 
@@ -24,9 +25,10 @@ setInterval(function () {
     };
 }, 1000);
 
-//===========================================================================================================================
-//------------------------------------------------24 hour to 12 hour conversion button---------------------------------------
-//===========================================================================================================================
+//!SECTION
+/* -------------------------------------------------------------------------- */
+/*                 SECTION 24 hour to 12 hour conversion button               */
+/* -------------------------------------------------------------------------- */
 
 waitForKeyElements(".orders-table-container", timeConvert);
 changed = false; //Set variable to mark replacement since I can't think of another way to detect if the time has changed or not :)
@@ -106,9 +108,11 @@ function timeConvert() {
     }
 }
 
-//===========================================================================================================================
-//------------------------------------------------Order Page Improvements----------------------------------------------------
-//===========================================================================================================================
+//!SECTION
+/* -------------------------------------------------------------------------- */
+/*                       SECTION Order Page Improvements                      */
+/* -------------------------------------------------------------------------- */
+
 //Waits for loyality number to load before passing it to the formatNum function.
 waitForKeyElements("#main-content-region > div > div.order-details-container > div.order-details-card.card > div.order-details > div:nth-child(4) > div.loyalty-info > div:nth-child(2) > div", formatNum);
 
@@ -116,34 +120,38 @@ function formatNum(jNode) {
     //Add line breaks for better kerning.
     $(document.querySelector("#main-content-region > div > div.order-details-container > div > div.order-details > div:nth-child(4) > div.loyalty-info")).append(`<br>`);
 
-    //Use regex to format the number and store it in propNum.
-    //This took way too long to figure out. Why hasn't anyone made a simpler version of regex yet? I wrote the thing yet if you ask me how it works I will be just as confused as you are.
-    //It shouldn't be the norm to have multiple generators out there for something that people use very often and have pretty much no viable substitute for.
-    //Sure it's EXTREMELY versatile but the learning curve is like running into a brick wall. I've never heard someone go "Oh thank God I can use RegEx! I've been waiting for this moment! I'm so happy!"
-    //Everyone hates it but for some reason as far as I know no one has sucessfully attempted to make an alternative for it. It makes me so sad.
-    //Anyways that's my rant.
+    //SECTION Format Loyality Number
+    /*Uses regex to format the number and store it in propNum.
+    This took way too long to figure out. Why hasn't anyone made a simpler version of regex yet? I wrote the thing yet if you ask me how it works I will be just as confused as you are.
+    It shouldn't be the norm to have multiple generators out there for something that people use very often and have pretty much no viable substitute for.
+    Sure it's EXTREMELY versatile but the learning curve is like running into a brick wall. I've never heard someone go "Oh thank God I can use RegEx! I've been waiting for this moment! I'm so happy!"
+    Everyone hates it but for some reason as far as I know no one has sucessfully attempted to make an alternative for it. It makes me so sad.
+    Anyways that's my rant. */
     num = document.querySelector("#main-content-region > div > div.order-details-container > div > div.order-details > div:nth-child(4) > div.loyalty-info > div:nth-child(2) > div").innerHTML;
     propNum = num.replace(/(\d{3})(\d{3})(\d{4})/, "\($1\) $2-$3")
-        //console.log(propNum); //Debugging
+    //!SECTION
 
-        //Replace phone number with propNum.
-        console.log('Formatting Celebrate Number')
-        $(document.querySelector("#main-content-region > div > div.order-details-container > div > div.order-details > div:nth-child(4) > div.loyalty-info > div:nth-child(2) > div")).contents().filter(function () {
+    //SECTION Replace phone number with propNum.
+    console.log('Formatting Celebrate Number')
+    $(document.querySelector("#main-content-region > div > div.order-details-container > div > div.order-details > div:nth-child(4) > div.loyalty-info > div:nth-child(2) > div")).contents().filter(function () {
         return this.nodeType == 3;
-    }).last().replaceWith(propNum);
+    }).last().replaceWith(propNum); 
+    //!SECTION
 
-    //Rename "Loyalty Number" to "Celebrate Number" for consistancy.
+    //SECTION Rename "Loyalty Number" to "Celebrate Number" for consistancy.
     console.log('Renaming "Loyalty Number" to "Celebrate Number"')
     $(document.querySelector("#main-content-region > div > div.order-details-container > div > div.order-details > div:nth-child(4) > div.loyalty-info > div:nth-child(1) > div")).contents().filter(function () {
         return this.nodeType == 3;
     }).last().replaceWith("Celebrate Number");
+    //!SECTION
 
-    //Remove "Cutoff Time" as it just causes confusion with pickup time.
+    //SECTION Remove "Cutoff Time" as it just causes confusion with pickup time.
     console.log('Removing "Cutoff Time"')
     $(document.querySelector("#main-content-region > div > div.order-details-container > div > div.order-details > div:nth-child(4) > div:nth-child(5) > div")).remove();
     $(document.querySelector("#main-content-region > div > div.order-details-container > div > div.order-details > div:nth-child(4) > div:nth-child(6) > div")).remove();
+    //!SECTION
 
-    //If Alternate Phone Number isn't present, remove it.
+    //SECTION If Alternate Phone Number isn't present, remove it.
     if (document.querySelector("#main-content-region > div > div.order-details-container > div > div.order-details > div:nth-child(3) > div:nth-child(5) > div").innerHTML.length === 7) {
         console.log('No Alternate Phone Number found, removing')
         document.querySelector("#main-content-region > div > div.order-details-container > div > div.order-details > div:nth-child(3) > div:nth-child(4) > div").remove();
@@ -151,11 +159,14 @@ function formatNum(jNode) {
     } else {
         console.log("Alt Phone Number Found. Keeping ");
     };
+    //!SECTION
 }
 
-//===========================================================================================================================
-//-----------------------------------------------Customer Order History------------------------------------------------------
-//===========================================================================================================================
+//!SECTION
+/* -------------------------------------------------------------------------- */
+/*                        SECTION Customer Order History                      */
+/* -------------------------------------------------------------------------- */
+
 waitForKeyElements("#main-content-region > div > div.order-details-container > div.order-details-card.card > div.order-details > div:nth-child(2) > div:nth-child(5) > div", orderHistory)
 orderHist = GM_getResourceText("orderHistBut");
 function orderHistory() {
@@ -163,9 +174,10 @@ function orderHistory() {
     
 }
 
-//===========================================================================================================================
-//------------------------------------------------Payment Calculator---------------------------------------------------------
-//===========================================================================================================================
+//!SECTION
+/* -------------------------------------------------------------------------- */
+/*                          SECTION Payment Calculator                        */
+/* -------------------------------------------------------------------------- */
 
 //Most of the js is in the HTML file.
 
@@ -191,9 +203,11 @@ function paymentCalc() {
     }
 }
 
-//===========================================================================================================================
-//------------------------------------------------Reload Dashboard upon Order Ready===---------------------------------------
-//===========================================================================================================================
+//!SECTION
+/* -------------------------------------------------------------------------- */
+/*                  SECTION Reload Dashboard upon Order Ready                 */
+/* -------------------------------------------------------------------------- */
+
 //This is to fix a bug in Rosie where when you mark an order as ready, it will stay in working.
 //Current solution is to force reload the page when the banner saying it's complete pops up.
 //Will work on a more complete solution at a later date.
@@ -205,9 +219,11 @@ function forceReload() {
     }
 }
 
-//===========================================================================================================================
-//------------------------------------------------Credit in Footer-----------------------------------------------------------
-//===========================================================================================================================
+//!SECTION
+/* -------------------------------------------------------------------------- */
+/*                           SECTION Credit in Footer                         */
+/* -------------------------------------------------------------------------- */
+
 function checkContainer() {
     if ($('.footer-content').is(':visible')) {
         console.log("Loading Rosie Addons");
@@ -222,11 +238,15 @@ function checkContainer() {
 $(document.querySelectorAll('.copyright')).contents().filter(function () {
     return this.nodeType == 3;
 }).last().replaceWith("© 2012-2020 Rosie Applications Inc." + " " + "|" + " " + "Rosie Addons");
-//===========================================================================================================================
-//------------------------------------------------Custom CSS ----------------------------------------------------------------
-//===========================================================================================================================
+
+//!SECTION
+/* -------------------------------------------------------------------------- */
+/*                              SECTION Custom CSS                            */
+/* -------------------------------------------------------------------------- */
+
 //Went for a Material Design look with Pure CSS since injecting ANY form of stylesheet into the header breaks the site's fonts.
 //Thanks, Rosie. Please start using !important.
 
 var customCSS = GM_getResourceText("customCSS");
 GM_addStyle(customCSS);
+//!SECTION
