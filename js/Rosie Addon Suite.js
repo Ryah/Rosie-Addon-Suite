@@ -237,7 +237,7 @@ function checkContainer() {
 
 $(document.querySelectorAll('.copyright')).contents().filter(function () {
     return this.nodeType == 3;
-}).last().replaceWith("© 2012-2020 Rosie Applications Inc." + " " + "|" + " " + "Rosie Addons");
+}).last().replaceWith("© 2012-2020 Rosie Applications Inc." + " " + "|" + " " + "<a href='https://www.ryah.org/'>Rosie Addons</a>");
 
 //!SECTION
 /* -------------------------------------------------------------------------- */
