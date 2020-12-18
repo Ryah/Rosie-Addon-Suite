@@ -57,7 +57,7 @@ function timeConvert() {
             var timeString = grabTime(i);
             var hourEnd = timeString.indexOf(":");
             var H = +timeString.substr(0, hourEnd)
-                var h = H % 12 || 12;
+            var h = H % 12 || 12;
             var ampm = (H < 12 || H === 24) ? " AM" : " PM";
             timeString = h + timeString.substr(hourEnd, 3) + ampm;
 
@@ -95,7 +95,7 @@ function timeConvert() {
             } else if (dash === false) {
                 //Add time to order page if on order page
                 var timeString2 = document.querySelectorAll("div:nth-child(4) > div:nth-child(3)")[2].innerHTML
-                    var timeStart = timeString2.indexOf(",") + 1;
+                var timeStart = timeString2.indexOf(",") + 1;
                 var timeEnd = timeString2.indexOf(":") + 2;
                 var T = timeString2.substr(timeStart, timeEnd);
                 //console.log(timeString2); //Debugging
@@ -135,7 +135,7 @@ function formatNum(jNode) {
     console.log('Formatting Celebrate Number')
     $(document.querySelector("#main-content-region > div > div.order-details-container > div > div.order-details > div:nth-child(4) > div.loyalty-info > div:nth-child(2) > div")).contents().filter(function () {
         return this.nodeType == 3;
-    }).last().replaceWith(propNum); 
+    }).last().replaceWith(propNum);
     //!SECTION
 
     //SECTION Rename "Loyalty Number" to "Celebrate Number" for consistancy.
@@ -169,9 +169,10 @@ function formatNum(jNode) {
 
 waitForKeyElements("#main-content-region > div > div.order-details-container > div.order-details-card.card > div.order-details > div:nth-child(2) > div:nth-child(5) > div", orderHistory)
 orderHist = GM_getResourceText("orderHistBut");
+
 function orderHistory() {
     $(document.querySelector('#page-cap-region > div > div > div.buttons-container > div')).append(orderHist);
-    
+
 }
 
 //!SECTION
@@ -196,7 +197,7 @@ waitForKeyElements("#main-content-region > div > div.order-details-container > d
 
 function paymentCalc() {
     if (window.location.href.indexOf("orders") > -1) {
-        if (typeof(load) != 'undefined' && load === null) {
+        if (typeof (load) != 'undefined' && load === null) {
             $(document.querySelector("#main-content-region > div > div.order-details-container")).append(pcHTML);
             load = true;
         }
@@ -227,24 +228,22 @@ function forceReload() {
 function checkContainer() {
     if ($('.footer-content').is(':visible')) {
         console.log("Loading Rosie Addons");
-        $(document.querySelectorAll('.copyright')).contents().filter(function () {
-            return this.nodeType == 3;
-        }).last().replaceWith("© 2012-2020 Rosie Applications Inc." + " " + "|" + " " + "<a href='https://www.ryah.org/'>Rosie Addons</a>");
-    } else {
-        setTimeout(checkContainer, 50);
+        $(document.querySelectorAll('.copyright')).contents().filter(function () {return this.nodeType == 3;}).last().replaceWith("© 2012 -2020 Rosie Applications Inc." + "" + " | " + "" + " < a href = 'https://www.ryah.org/' > Rosie Addons < /a>");}
+        else {
+            setTimeout(checkContainer, 50);
+        }
     }
-}
 
 
 
-//!SECTION
-/* -------------------------------------------------------------------------- */
-/*                              SECTION Custom CSS                            */
-/* -------------------------------------------------------------------------- */
+    //!SECTION
+    /* -------------------------------------------------------------------------- */
+    /*                              SECTION Custom CSS                            */
+    /* -------------------------------------------------------------------------- */
 
-//Went for a Material Design look with Pure CSS since injecting ANY form of stylesheet into the header breaks the site's fonts.
-//Thanks, Rosie. Please start using !important.
+    //Went for a Material Design look with Pure CSS since injecting ANY form of stylesheet into the header breaks the site's fonts.
+    //Thanks, Rosie. Please start using !important.
 
-var customCSS = GM_getResourceText("customCSS");
-GM_addStyle(customCSS);
-//!SECTION
+    var customCSS = GM_getResourceText("customCSS");
+    GM_addStyle(customCSS);
+    //!SECTION
