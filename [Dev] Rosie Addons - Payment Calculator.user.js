@@ -5,15 +5,7 @@
 // @version         1.4
 // @description     Addons for Rosie Retailers because the site needs improvement
 // @author          Ryan Adame
-// @require         https://raw.githubusercontent.com/Ryah/Rosie-Addon-Suite/main/js/waitForKeyElements_offline.js?token=ADSLCWNO4EKWE5GKXMDXQMC74UTFG
-// @require         https://raw.githubusercontent.com/Ryah/Rosie-Addon-Suite/main/js/jquery.min.js?token=ADSLCWK4K5GQYLWDDKSELKS74UTLI
-// @resource        payCalcHTML https://raw.githubusercontent.com/Ryah/Rosie-Addon-Suite/main/html/paymentCalculator.html?token=ADSLCWL7MXMCSKXBEX35OEK74UTSW
-// @resource        customCSS https://raw.githubusercontent.com/Ryah/Rosie-Addon-Suite/main/css/styles.css?token=ADSLCWMBPA5QCOOABJR2XQS74UTUM
-// @grant           GM_addStyle
-
 // ==/UserScript==
-
-//waitForKeyElements() by BrockA on Github https://gist.github.com/BrockA/2625891
 
 //Payment Calculator HTML loaded from C:/Users/rosie0048/Desktop/RAS/html/paymentCalculator.html
 var pcHTML = GM_getResourceText("payCalcHTML");

@@ -5,12 +5,6 @@
 // @version         1.5
 // @description     Addons for Rosie Retailers because the site needs improvement
 // @author          Ryan Adame
-// @require         https://raw.githubusercontent.com/Ryah/Rosie-Addon-Suite/main/js/waitForKeyElements_offline.js?token=ADSLCWNO4EKWE5GKXMDXQMC74UTFG
-// @require         https://raw.githubusercontent.com/Ryah/Rosie-Addon-Suite/main/js/jquery.min.js?token=ADSLCWK4K5GQYLWDDKSELKS74UTLI
-// @resource        customCSS https://raw.githubusercontent.com/Ryah/Rosie-Addon-Suite/main/css/styles.css?token=ADSLCWMBPA5QCOOABJR2XQS74UTUM
-// @resource        orderHistBut https://raw.githubusercontent.com/Ryah/Rosie-Addon-Suite/main/html/orderHist.html?token=ADSLCWOBV4KVNMHFGCWGUBC74UUIK
-// @run-at          document-idle
-// @grant           GM_addStyle
 // ==/UserScript==
 
 /*---
@@ -26,7 +20,7 @@
 //------------------------------------------------Setup----------------------------------------------------------------------
 //===========================================================================================================================
 //Calls tag section to add tag to footer once visible
-jQuery(document).ready(checkContainer);
+//jQuery(document).ready(checkContainer);
 
 ouMsg = false;
 //Checks and store if you're on Dashboard or Order Page and stores in a boolean named "dash" every second (yeah it's unoptimized but it's the best I got so deal with it)
@@ -53,17 +47,6 @@ setInterval(function () {
 //===========================================================================================================================
 //------------------------------------------------24 hour to 12 hour conversion button---------------------------------------
 //===========================================================================================================================
-
-//Create and activate the button with a div container to style it.
-
-//console.log("Creating Button for time conversion");
-//var zNode = document.createElement('div');
-//zNode.innerHTML = '<button id="button" class="button-label" type="button">' + 'Convert Times</button>';
-//zNode.setAttribute('id', 'timeButton');
-//document.body.insertBefore(zNode, document.body.firstChild);
-//document.getElementById("button").addEventListener(
-//    "click", ButtonClickAction, false
-//);
 
 waitForKeyElements(".orders-table-container", timeConvert);
 changed = false; //Set variable to mark replacement since I can't think of another way to detect if the time has changed or not :)
@@ -142,7 +125,6 @@ function timeConvert() {
                 var T = timeString2.substr(timeStart, timeEnd);
                 //console.log(timeString2); //Debugging
                 return T;
-                console.log("On Order Page, Grabbing time from details-row(3).");
             } else {
                 alert("Something went wrong grabbing the time. Error Code 1735 in 24/12 Button Script.");
                 console.log("Something went wrong grabbing the time. Error Code 1735 in 24/12 Button Script.");
@@ -196,57 +178,13 @@ function formatNum(jNode) {
     } else {
         console.log("Alt Phone Number Found. Keeping ");
     };
-
-    //Warn about Overfilled or Underfilled items
-    //document.querySelectorAll("div.badge-core.warning > span")
-    // if(window.location.href.indexOf("picker") > -1) {
-    // $(document.querySelector("#warn > center > h4")).remove();
-    // var warnBadge = document.querySelectorAll("div.badge-core.warning > span").length - 2;
-    // var scale = document.querySelector("#main-content-region > div > div.pick-list-container > div > div.pick-list-body > div > div > div.tab-row-container > div > div.tab.bold.selected > div > div > div.badge-core.informative > span").innerHTML;
-    // var warn = 0;
-    // var over = 0;
-    // var under = 0;
-    // var isAre = "is";
-    // if (warnBadge > 0) {
-    //   for (i = 2; i < warnBadge + 2; i++) {
-    //     if (document.querySelectorAll("div.badge-core.warning > span")[i].innerText === "Underfilled") {
-    //       under++;
-    //       warn++;
-    //     } else if (document.querySelectorAll("div.badge-core.warning > span")[i].innerText === "Overfilled") {
-    //       over++;
-    //       warn++;
-    //     } else {
-    //       console.log("not filled");
-    //     }
-    //   }
-    //   if (warn >= 1 && warn !== scale) {
-    //     if (over > 1) {
-    //       isAre = "are";
-    //     } else {
-    //       isAre = "is";
-    //     }
-    //     if (ouMsg == false) {
-    //       $(document.querySelector("#main-content-region > div > div.order-details-container")).append (`
-    //         <div id="warn" class="card">
-    //           <center>
-    //             <h3>There ` + isAre + ` ` + over + ` Overfilled and ` + under + ` Underfilled items.</h3>
-    //             <h6>This may be slightly inaccurate</h6>
-    //            <h6>Also includes scaled items because I'm bad at checking things</h6>
-    //           </center>
-    //        </div>
-    //       `);
-    //       ouMsg = true;
-    //       };
-    //     }
-    //   }
-    // }
 }
 
 //===========================================================================================================================
 //-----------------------------------------------Customer Order History------------------------------------------------------
 //===========================================================================================================================
 waitForKeyElements("#main-content-region > div > div.order-details-container > div.order-details-card.card > div.order-details > div:nth-child(2) > div:nth-child(5) > div", orderHistory)
-var orderHist = GM_getResourceText("orderHistBut");
+orderHist = GM_getResourceText("orderHistBut");
 function orderHistory() {
     $(document.querySelector('#page-cap-region > div > div > div.buttons-container > div')).append(orderHist);
 }
@@ -255,9 +193,7 @@ function orderHistory() {
 //------------------------------------------------Payment Calculator---------------------------------------------------------
 //===========================================================================================================================
 
-//Putting it in the main script renders the Time Conversion button unusable.
-//Possible solution is to convert the times automatically the with waitForKeyElements() function.
-//Will put in TODO
+//External Script
 
 //===========================================================================================================================
 //------------------------------------------------Reload Dashboard upon Order Ready===---------------------------------------
