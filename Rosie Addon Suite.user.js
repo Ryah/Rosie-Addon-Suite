@@ -5,6 +5,7 @@
 // @version         1.5
 // @description     Addons for Rosie Retailers because the site needs improvement
 // @author          Ryan Adame
+// @require         https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js
 // ==/UserScript==
 
 /*---
