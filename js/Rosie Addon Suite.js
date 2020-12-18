@@ -228,22 +228,24 @@ function forceReload() {
 function checkContainer() {
     if ($('.footer-content').is(':visible')) {
         console.log("Loading Rosie Addons");
-        $(document.querySelectorAll('.copyright')).contents().filter(function () {return this.nodeType == 3;}).last().replaceWith("© 2012 -2020 Rosie Applications Inc." + " + " | " + " + "<a href 'https://www.ryah.org/'> Rosie Addons </a>");}
-        else {
-            setTimeout(checkContainer, 50);
-        }
+        $(document.querySelectorAll('.copyright')).contents().filter(function () {
+            return this.nodeType == 3;
+        }).last().replaceWith("© 2012-2020 Rosie Applications Inc." + " " + "|" + " " + "<a href='https://www.ryah.org/'>Rosie Addons</a>");
+    } else {
+        setTimeout(checkContainer, 50);
     }
+}
 
 
 
-    //!SECTION
-    /* -------------------------------------------------------------------------- */
-    /*                              SECTION Custom CSS                            */
-    /* -------------------------------------------------------------------------- */
+//!SECTION
+/* -------------------------------------------------------------------------- */
+/*                              SECTION Custom CSS                            */
+/* -------------------------------------------------------------------------- */
 
-    //Went for a Material Design look with Pure CSS since injecting ANY form of stylesheet into the header breaks the site's fonts.
-    //Thanks, Rosie. Please start using !important.
+//Went for a Material Design look with Pure CSS since injecting ANY form of stylesheet into the header breaks the site's fonts.
+//Thanks, Rosie. Please start using !important.
 
-    var customCSS = GM_getResourceText("customCSS");
-    GM_addStyle(customCSS);
-    //!SECTION
+var customCSS = GM_getResourceText("customCSS");
+GM_addStyle(customCSS);
+//!SECTION
