@@ -1,12 +1,13 @@
 /* -------------------------------------------------------------------------- */
-/*                                SECTION Setup                               */
+/*                                  Setup                                     */
 /* -------------------------------------------------------------------------- */
 
 //Calls tag section to add tag to footer once visible
 jQuery(document).ready(checkContainer);
 
 ouMsg = false;
-//Checks and store if you're on Dashboard or Order Page and stores in a boolean named "dash" every second (yeah it's unoptimized but it's the best I got so deal with it)
+//Checks and store if you're on Dashboard or Order Page and stores in a boolean named "dash" every second 
+//(yeah it's unoptimized but it's the best I got so deal with it)
 //UPDATE: It's no longer the best I got but I'm too lazy to update that spaghetti
 setInterval(function () {
     if (window.location.href.indexOf("dashboard") > -1) {
@@ -25,14 +26,14 @@ setInterval(function () {
     };
 }, 1000);
 
-//!SECTION
 /* -------------------------------------------------------------------------- */
-/*                 SECTION 24 hour to 12 hour conversion button               */
+/*                         24 hour to 12 hour conversion button               */
 /* -------------------------------------------------------------------------- */
 
 waitForKeyElements(".orders-table-container", timeConvert);
+
 changed = false; //Set variable to mark replacement since I can't think of another way to detect if the time has changed or not :)
-//function ButtonClickAction(zEvent) {
+
 function timeConvert() {
     if (changed === false) {
         //If on Dashboard, counts the header-content classes for amount of orders.
@@ -84,21 +85,18 @@ function timeConvert() {
 
         //Grab time innerHTML and trim to just time
         function grabTime(j) {
-            //console.log(j); //Debugging
             if (dash === true) {
                 var timeString2 = document.querySelectorAll('.header-content')[j].innerHTML;
                 var timeStart = timeString2.indexOf("|") + 12;
                 var timeEnd = timeString2.indexOf(":") + 2;
                 var T = timeString2.substr(timeStart, timeEnd);
                 return T;
-                console.log("On Dashboard, Grabbing time from header-content.");
             } else if (dash === false) {
                 //Add time to order page if on order page
                 var timeString2 = document.querySelectorAll("div:nth-child(4) > div:nth-child(3)")[2].innerHTML
                     var timeStart = timeString2.indexOf(",") + 1;
                 var timeEnd = timeString2.indexOf(":") + 2;
                 var T = timeString2.substr(timeStart, timeEnd);
-                //console.log(timeString2); //Debugging
                 return T;
             } else {
                 alert("Something went wrong grabbing the time. Error Code 1735 in 24/12 Button Script.");
@@ -108,19 +106,19 @@ function timeConvert() {
     }
 }
 
-//!SECTION
+
 /* -------------------------------------------------------------------------- */
-/*                       SECTION Order Page Improvements                      */
+/*                               Order Page Improvements                      */
 /* -------------------------------------------------------------------------- */
 
-//Waits for loyality number to load before passing it to the formatNum function.
-waitForKeyElements("#main-content-region > div > div.order-details-container > div.order-details-card.card > div.order-details > div:nth-child(4) > div.loyalty-info > div:nth-child(2) > div", formatNum);
+//Waits for loyality number to load before passing it to the orderImprove function.
+waitForKeyElements("#main-content-region > div > div.order-details-container > div.order-details-card.card > div.order-details > div:nth-child(4) > div.loyalty-info > div:nth-child(2) > div", orderImprove);
 
-function formatNum(jNode) {
+function orderImprove(jNode) {
     //Add line breaks for better kerning.
     $(document.querySelector("#main-content-region > div > div.order-details-container > div > div.order-details > div:nth-child(4) > div.loyalty-info")).append(`<br>`);
 
-    //SECTION Format Loyality Number
+    // Format Loyality Number
     /*Uses regex to format the number and store it in propNum.
     This took way too long to figure out. Why hasn't anyone made a simpler version of regex yet? I wrote the thing yet if you ask me how it works I will be just as confused as you are.
     It shouldn't be the norm to have multiple generators out there for something that people use very often and have pretty much no viable substitute for.
@@ -129,29 +127,29 @@ function formatNum(jNode) {
     Anyways that's my rant. */
     num = document.querySelector("#main-content-region > div > div.order-details-container > div > div.order-details > div:nth-child(4) > div.loyalty-info > div:nth-child(2) > div").innerHTML;
     propNum = num.replace(/(\d{3})(\d{3})(\d{4})/, "\($1\) $2-$3")
-    //!SECTION
+    
 
-    //SECTION Replace phone number with propNum.
+    // Replace phone number with propNum.
     console.log('Formatting Celebrate Number')
     $(document.querySelector("#main-content-region > div > div.order-details-container > div > div.order-details > div:nth-child(4) > div.loyalty-info > div:nth-child(2) > div")).contents().filter(function () {
         return this.nodeType == 3;
     }).last().replaceWith(propNum); 
-    //!SECTION
+    
 
-    //SECTION Rename "Loyalty Number" to "Celebrate Number" for consistancy.
+    // Rename "Loyalty Number" to "Celebrate Number" for consistancy.
     console.log('Renaming "Loyalty Number" to "Celebrate Number"')
     $(document.querySelector("#main-content-region > div > div.order-details-container > div > div.order-details > div:nth-child(4) > div.loyalty-info > div:nth-child(1) > div")).contents().filter(function () {
         return this.nodeType == 3;
     }).last().replaceWith("Celebrate Number");
-    //!SECTION
+    
 
-    //SECTION Remove "Cutoff Time" as it just causes confusion with pickup time.
+    // Remove "Cutoff Time" as it just causes confusion with pickup time.
     console.log('Removing "Cutoff Time"')
     $(document.querySelector("#main-content-region > div > div.order-details-container > div > div.order-details > div:nth-child(4) > div:nth-child(5) > div")).remove();
     $(document.querySelector("#main-content-region > div > div.order-details-container > div > div.order-details > div:nth-child(4) > div:nth-child(6) > div")).remove();
-    //!SECTION
+    
 
-    //SECTION If Alternate Phone Number isn't present, remove it.
+    // If Alternate Phone Number isn't present, remove it.
     if (document.querySelector("#main-content-region > div > div.order-details-container > div > div.order-details > div:nth-child(3) > div:nth-child(5) > div").innerHTML.length === 7) {
         console.log('No Alternate Phone Number found, removing')
         document.querySelector("#main-content-region > div > div.order-details-container > div > div.order-details > div:nth-child(3) > div:nth-child(4) > div").remove();
@@ -159,12 +157,12 @@ function formatNum(jNode) {
     } else {
         console.log("Alt Phone Number Found. Keeping ");
     };
-    //!SECTION
+    
 }
 
-//!SECTION
+
 /* -------------------------------------------------------------------------- */
-/*                        SECTION Customer Order History                      */
+/*                                Customer Order History                      */
 /* -------------------------------------------------------------------------- */
 
 waitForKeyElements("#main-content-region > div > div.order-details-container > div.order-details-card.card > div.order-details > div:nth-child(2) > div:nth-child(5) > div", orderHistory)
@@ -174,9 +172,9 @@ function orderHistory() {
     
 }
 
-//!SECTION
+
 /* -------------------------------------------------------------------------- */
-/*                          SECTION Payment Calculator                        */
+/*                                  Payment Calculator                        */
 /* -------------------------------------------------------------------------- */
 
 //Most of the js is in the HTML file.
@@ -203,9 +201,9 @@ function paymentCalc() {
     }
 }
 
-//!SECTION
+
 /* -------------------------------------------------------------------------- */
-/*                  SECTION Reload Dashboard upon Order Ready                 */
+/*                          Reload Dashboard upon Order Ready                 */
 /* -------------------------------------------------------------------------- */
 
 //This is to fix a bug in Rosie where when you mark an order as ready, it will stay in working.
@@ -218,11 +216,6 @@ function forceReload() {
         location.reload();
     }
 }
-
-//!SECTION
-/* -------------------------------------------------------------------------- */
-/*                           SECTION Credit in Footer                         */
-/* -------------------------------------------------------------------------- */
 
 function checkContainer() {
     if ($('.footer-content').is(':visible')) {
@@ -239,14 +232,12 @@ $(document.querySelectorAll('.copyright')).contents().filter(function () {
             return this.nodeType == 3;
 }).last().replaceWith("© 2012-2020 Rosie Applications Inc. | <a href='https://www.ryah.org/'>Rosie Addons</a>");
 
-//!SECTION
+
 /* -------------------------------------------------------------------------- */
-/*                              SECTION Custom CSS                            */
+/*                                      Custom CSS                            */
 /* -------------------------------------------------------------------------- */
 
-//Went for a Material Design look with Pure CSS since injecting ANY form of stylesheet into the header breaks the site's fonts.
-//Thanks, Rosie. Please start using !important.
+//Went for a Material Design look with Pure CSS since injecting ANY form of stylesheet breaks the site's fonts.
 
 var customCSS = GM_getResourceText("customCSS");
 GM_addStyle(customCSS);
-//!SECTION
