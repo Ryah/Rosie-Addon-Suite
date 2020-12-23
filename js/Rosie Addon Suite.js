@@ -1,7 +1,7 @@
 /* -------------------------------------------------------------------------- */
 /*                                  Setup                                     */
 /* -------------------------------------------------------------------------- */
-//Hi
+
 //Calls tag section to add tag to footer once visible
 jQuery(document).ready(checkContainer);
 
