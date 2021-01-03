@@ -22,8 +22,8 @@ Addons for Rosie Retailers because the site needs improvement
 
 ### Added
 
-- Changed Color to Payment Calculator Results
-- Added a Changelog pog
+- Different Colors to Payment Calculator Results
+- A Changelog (pog)
 
 ### Changed
 
@@ -39,7 +39,3 @@ Addons for Rosie Retailers because the site needs improvement
 ### Removed
 
 - My sanity and productivity
-
-### Security
-
-- Big security
