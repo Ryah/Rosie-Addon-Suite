@@ -297,22 +297,22 @@ function checkContainer() {
             })
             .last()
             .replaceWith(
-                "© 2012-2020 Rosie Applications Inc. | <a href='https://www.ryah.org/'>Rosie Addons</a>"
+                        "© 2012-2020 Rosie Applications Inc. | <a href='https://www.ryah.org/'>Rosie Addons</a> | <a style='text-decoration:none' href='https://github.com/Ryah/Rosie-Addon-Suite'><img height='20' width='20' src='https://cdn.jsdelivr.net/npm/simple-icons@4.5.0/icons/github.svg' /></a>"
             );
     } else {
         setTimeout(checkContainer, 50);
     }
 }
 
-$(document.querySelectorAll(".copyright"))
-    .contents()
-    .filter(function () {
-        return this.nodeType == 3;
-    })
-    .last()
-    .replaceWith(
-        "© 2012-2020 Rosie Applications Inc. | <a href='https://www.ryah.org/'>Rosie Addons</a>"
-    );
+// $(document.querySelectorAll(".copyright"))
+//     .contents()
+//     .filter(function () {
+//         return this.nodeType == 3;
+//     })
+//     .last()
+//     .replaceWith(
+//         "© 2012-2020 Rosie Applications Inc. | <a href='https://www.ryah.org/'>Rosie Addons</a> | <a style='text-decoration:none' href='https://github.com/Ryah/Rosie-Addon-Suite'><img height='16' width='16' src='https://cdn.jsdelivr.net/npm/simple-icons@4.5.0/icons/github.svg' /></a>"
+//     );
 
 /* -------------------------------------------------------------------------- */
 /*                                      Custom CSS                            */

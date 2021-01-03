@@ -16,7 +16,9 @@ Addons for Rosie Retailers because the site needs improvement
 - No, seriously. Every other button on rosie is a span label with an onClick event.
 - I mean, it works at least 90% of the time I guess? 
 
+### Removed
 
+- Unused copyright replacement at end of file.
 
 ## [1.58] - 2021-01-03
 
