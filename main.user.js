@@ -14,10 +14,3 @@
 // @grant           GM_addStyle
 // @grant           GM_getResourceText
 // ==/UserScript==
-
-/*Changelog
-    * 1.53
-    *   • Added Changelog
-    *   • Added color changing functionality to Payment Calculator Results Sidebar
-    *   • Flipped Rosie and POS price displays in Payment Calculator for better formatting
-    *   • Made calculate button look better ig
