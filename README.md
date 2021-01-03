@@ -5,7 +5,7 @@ Addons for Rosie Retailers because the site needs improvement
 
 ## [Unreleased]
 
-- TODO
+- TODO: make a TODO list.
 
 
 ## [1.59] - 2021-01-03
