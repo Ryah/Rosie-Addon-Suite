@@ -1,61 +1,70 @@
-<div id="payCalc" class="card" title="Payment Calculator">
-    <div class="pos">
-        <form id="posForm" onsubmit="return false;">
-            <h4>[POS] Subtotal</h4>
-            <input style="top:80%; left:5%; width:100px;" type="number" id="posSub" name="posSub" />
-            <br />
-            <br />
-            <h4>[Rosie] Subtotal</h4>
-            <h5 id="rosSubR" name="r1"></h5>
-            <br />
-            <input type="button" value="Calculate" onclick="calc()" />
-        </form>
-    </div>
-    <div class="ros">
-        <h4>[POS] Tax</h4>
-        <input style="top:50%; left:5%; width:100px;" type="number" id="posTax" name="posTax" />
-        <br />
-        <br />
-        <h4>[Rosie] Tax</h4>
-        <h5 id="rosTaxR" name="r1"></h5>
-    </div>
-    <div class="totals" style="display: flex; flex-direction: column;">
-        <div class="posTot">
-            <h4>[POS] Total</h4>
-            <h5 id="totalPOSFix" name="r1">$0.00</h5>
+<div id="CalcContainer" class="card" title="Payment Calculator">
+    <div id="payCalc">
+        <div class="calcL">
+            <form id="posForm" onsubmit="return false;">
+                <h4>[Rosie] Subtotal</h4>
+                <h5 id="rosSubR" name="r1"></h5>
+                <br />
+                <h4>[POS] Subtotal</h4>
+                <input style="top:80%; left:5%; width:100px;" type="number" id="posSub" name="posSub" />
+                <br />
+                <br />
+
+            </form>
         </div>
-        <br />
-        <div class="rosTot">
-            <h4>[Rosie] Total</h4>
-            <h5 id="rosTotalR" name="r1"></h5>
+        <div class="calcR">
+            <h4>[Rosie] Tax</h4>
+            <h5 id="rosTaxR" name="r1"></h5>
+            <br />
+            <h4>[POS] Tax</h4>
+            <input style="top:50%; left:5%; width:100px;" type="number" id="posTax" name="posTax" />
+            <br />
         </div>
+        <div class="totals" style="display: flex; flex-direction: column">
+            <div class="rosTot">
+                <h4>[Rosie] Total</h4>
+                <h5 id="rosTotalR" name="r1"></h5>
+            </div>
+            <br />
+            <div class="posTot">
+                <h4>[POS] Total</h4>
+                <h5 id="totalPOSFix" name="r1">$0.00</h5>
+            </div>
+        </div>
+
+        <hr class="vertical" />
+        <div class="adjL" style="display: flex; flex-direction: column;">
+            <div class="rosTaxAdj">
+                <h4>[Rosie] Tax Adjust (640)</h4>
+                <h5 id="rosTaxAdj" name="r1">0</h5>
+            </div>
+            <br />
+            <div class="posTaxAdj">
+                <h4>[POS] Tax Adjust</h4>
+                <h5 id="posTaxAdj" name="r1">$0.00</h5>
+            </div>
+        </div>
+        <div class="adjR" style="display: flex; flex-direction: column">
+            <div class="rosNonTaxAdj">
+                <h4>[Rosie] Non-Tax Adjust (641)</h4>
+                <h5 id="rosNonTaxAdj" name="r1">0</h5>
+            </div>
+            <br />
+            <div class="posNonTaxAdj">
+                <h4>[POS] Non Tax Adjust</h4>
+                <h5 id="posNonTaxAdj" name="r1">$0.00</h5>
+            </div>
+        </div>
+    </div>
+    <div id="calcButton">
+            <div class="loading-button button secondary" style="width: 100%;">
+        <span class="button-label"
+            style="display: fixed !important; width: 100% !important; max-width: none !important;" onclick="calc()">
+            Calculate Price Adjustment
+        </span>
+    </div>
     </div>
 
-    <hr class="vertical" />
-    <div class="posAdj" style="display: flex; flex-direction: column;">
-        <div class="posTaxAdj">
-            <h4>[POS] Tax Adjust</h4>
-            <h5 id="posTaxAdj" name="r1">$0.00</h5>
-        </div>
-        <br />
-        <div class="rosTaxAdj">
-            <h4>[Rosie] Tax Adjust (640)</h4>
-            <h5 id="rosTaxAdj" name="r1">0</h5>
-        </div>
-    </div>
-    <div class="rosAdj" style="display: flex; flex-direction: column;">
-
-        <div class="posNonTaxAdj">
-            <h4>[POS] Non Tax Adjust</h4>
-            <h5 id="posNonTaxAdj" name="r1">$0.00</h5>
-        </div>
-        <br />
-        <div class="rosNonTaxAdj">
-            <h4>[Rosie] Non-Tax Adjust (641)</h4>
-            <h5 id="rosNonTaxAdj" name="r1">0</h5>
-        </div>
-    </div>
-    <br />
 </div>
 
 <div id="resultsR">
@@ -63,10 +72,14 @@
         <p>[Rosie]</p>
     </div>
     <h3>640</h3>
-    <h4 id="rosTaxAdjSide" name="r1">0</h4>
-    <hr style="width:100px !important;" />
+    <div id="rosTaxColor">
+        <h4 id="rosTaxAdjSide" name="r1">0</h4>
+    </div>
+    <hr style="width: 100px !important" />
     <h3>641</h3>
-    <h4 id="rosNonTaxAdjSide" name="r1">0</h4>
+    <div id="rosNonTaxColor">
+        <h4 id="rosNonTaxAdjSide" name="r1">0</h4>
+    </div>
 </div>
 
 <div id="resultsL">
@@ -74,12 +87,16 @@
         <p>[POS]</p>
     </div>
     <h3>Tax</h3>
-    <h4 id="posTaxAdjSide" name="r1">0</h4>
-    <hr style="width:100px !important;" />
+    <div id="posTaxColor">
+        <h4 id="posTaxAdjSide" name="r1">0</h4>
+    </div>
+    <hr style="width: 100px !important" />
     <h3>Non-Tax</h3>
-    <h4 id="posNonTaxAdjSide" name="r1">0</h4>
-</div>
+    <div id="posNonTaxColor">
+        <h4 id="posNonTaxAdjSide" name="r1">0</h4>
+    </div>
 
+</div>
 
 <script>
     textType = Node.textContent ? 'textContent' : 'innerText',
@@ -87,69 +104,78 @@
             '#main-content-region > div > div.order-details-container > div.order-details-card.card > div.order-details > div.details-column.money > div:nth-child(4) > div.content'
         ).innerHTML;
     rosSubR[textType] = document.querySelector(
-        '#main-content-region > div > div.order-details-container > div.order-details-card.card > div.order-details > div.details-column.money > div:nth-child(1) > div.content'
+        "#main-content-region > div > div.order-details-container > div.order-details-card.card > div.order-details > div.details-column.money > div:nth-child(1) > div.content"
     ).innerHTML;
     rosTaxR[textType] = document.querySelector(
-        '#main-content-region > div > div.order-details-container > div.order-details-card.card > div.order-details > div.details-column.money > div:nth-child(3) > div.content'
+        "#main-content-region > div > div.order-details-container > div.order-details-card.card > div.order-details > div.details-column.money > div:nth-child(3) > div.content"
     ).innerHTML;
-    calcHid = document.getElementById('payCalc');
+
+    calcHid = document.getElementById("payCalc");
+    calcButHid = document.getElementById("CalcContainer");
     openSub = false;
+
     setInterval(function () {
         if (window.location.href.indexOf("picker") > -1) {
             calcHid.style.display = "flex";
+            calcButHid.style.display = "inherit";
             rosTotalCheck = document.querySelector(
-                '#main-content-region > div > div.order-details-container > div.order-details-card.card > div.order-details > div.details-column.money > div:nth-child(4) > div.content'
+                "#main-content-region > div > div.order-details-container > div.order-details-card.card > div.order-details > div.details-column.money > div:nth-child(4) > div.content"
             ).innerHTML;
             if (rosTotalR.innerHTML !== rosTotalCheck) {
                 rosTotalR[textType] = rosTotalCheck;
                 rosSubR[textType] = document.querySelector(
-                    '#main-content-region > div > div.order-details-container > div.order-details-card.card > div.order-details > div.details-column.money > div:nth-child(1) > div.content'
+                    "#main-content-region > div > div.order-details-container > div.order-details-card.card > div.order-details > div.details-column.money > div:nth-child(1) > div.content"
                 ).innerHTML;
                 rosTaxR[textType] = document.querySelector(
-                    '#main-content-region > div > div.order-details-container > div.order-details-card.card > div.order-details > div.details-column.money > div:nth-child(3) > div.content'
+                    "#main-content-region > div > div.order-details-container > div.order-details-card.card > div.order-details > div.details-column.money > div:nth-child(3) > div.content"
                 ).innerHTML;
                 console.log("Price Updated");
-            };
+            }
         } else {
             calcHid.style.display = "none";
+            calcButHid.style.display = "none";
         }
     }, 1000);
 
     //-----------------------------------------------------------------------
-    //                           SECTION Calculations                         
+    //                           SECTION Calculations
     //-----------------------------------------------------------------------
 
     function calc() {
         //Grab final rosie prices
         rosTotalR[textType] = rosTotalCheck;
         rosSubR[textType] = document.querySelector(
-            '#main-content-region > div > div.order-details-container > div.order-details-card.card > div.order-details > div.details-column.money > div:nth-child(1) > div.content'
+            "#main-content-region > div > div.order-details-container > div.order-details-card.card > div.order-details > div.details-column.money > div:nth-child(1) > div.content"
         ).innerHTML;
         rosTaxR[textType] = document.querySelector(
-            '#main-content-region > div > div.order-details-container > div.order-details-card.card > div.order-details > div.details-column.money > div:nth-child(3) > div.content'
+            "#main-content-region > div > div.order-details-container > div.order-details-card.card > div.order-details > div.details-column.money > div:nth-child(3) > div.content"
         ).innerHTML;
-        rosTotal = document.getElementById('rosTotal');
+        rosTotal = document.getElementById("rosTotal");
         D28Raw = document.querySelector(
-            '#main-content-region > div > div.order-details-container > div.order-details-card.card > div.order-details > div.details-column.money > div:nth-child(1) > div.content'
+            "#main-content-region > div > div.order-details-container > div.order-details-card.card > div.order-details > div.details-column.money > div:nth-child(1) > div.content"
         ).innerHTML;
-        var D28 = parseFloat(D28Raw.replace('$', ''));
+        var D28 = parseFloat(D28Raw.replace("$", ""));
         console.log(D28);
         D33Raw = document.querySelector(
-            '#main-content-region > div > div.order-details-container > div.order-details-card.card > div.order-details > div.details-column.money > div:nth-child(3) > div.content'
+            "#main-content-region > div > div.order-details-container > div.order-details-card.card > div.order-details > div.details-column.money > div:nth-child(3) > div.content"
         ).innerHTML;
-        var D33 = parseFloat(D33Raw.replace('$', ''));
+        var D33 = parseFloat(D33Raw.replace("$", ""));
         console.log(D33);
         rosTotal = D28 + D33;
-        divHidR = document.getElementById('resultsR');
-        divHidL = document.getElementById('resultsL');
+        divHidR = document.getElementById("resultsR");
+        divHidL = document.getElementById("resultsL");
+        divRosTaxCol = document.getElementById("rosTaxColor");
+        divRosNonTaxCol = document.getElementById("rosNonTaxColor");
+        divPosTaxCol = document.getElementById("posTaxColor");
+        divPosNonTaxCol = document.getElementById("posNonTaxColor");
         divHidR.style.display = "none";
         divHidL.style.display = "none";
         console.log("test");
 
         //POS Total
-        I28 = parseFloat(document.getElementById('posSub').value) || 0,
-        I33 = parseFloat(document.getElementById('posTax').value) || 0,
-        totalPOS = document.getElementById('totalPOS');
+        (I28 = parseFloat(document.getElementById("posSub").value) || 0),
+        (I33 = parseFloat(document.getElementById("posTax").value) || 0),
+        (totalPOS = document.getElementById("totalPOS"));
         totalPOS = I28 + I33;
         totalPOSFix[textType] = "$" + parseFloat(totalPOS).toFixed(2);
 
@@ -157,7 +183,7 @@
         //(POS Tax - Rosie Tax)/State Tax Rate = x
         // x * (-100) = rosTaxAdj (rounded to nearest integer)
         D56 = (I33 - D33) / 0.0825;
-        D52 = Math.max(0, D56 * (-100));
+        D52 = Math.max(0, D56 * -100);
         rosTax = Math.round(D52);
         rosTaxAdj[textType] = Math.round(D52);
         rosTaxAdjSide[textType] = Math.round(D52);
@@ -165,8 +191,8 @@
         //Rosie Non-Tax Calculation (2 steps, must be done after Rosie Tax Adjustment)
         //((POS Subtotal - Rosie Subtotal) - Rosie Tax Adjustment) = x
         //(x * (-100)) = rosNonTaxAdj
-        D62 = ((I28 - D28) - parseFloat(D56).toFixed(2));
-        D58 = Math.max(0, D62 * (-100));
+        D62 = I28 - D28 - parseFloat(D56).toFixed(2);
+        D58 = Math.max(0, D62 * -100);
         rosNonTax = Math.round(D58);
         rosNonTaxAdj[textType] = Math.round(D58);
         rosNonTaxAdjSide[textType] = Math.round(D58);
@@ -175,44 +201,74 @@
         //(POS Tax - Rosie Tax) / 0.0825 = posTaxAdj
         I56 = (I33 - D33) / 0.0825;
         I52 = Math.max(0, I56);
-        posTaxAdj[textType] = '$' + parseFloat(I52).toFixed(2);
-        posTaxAdjSide[textType] = '$' + parseFloat(I52).toFixed(2);
+        posTaxAdj[textType] = "$" + parseFloat(I52).toFixed(2);
+        posTaxAdjSide[textType] = "$" + parseFloat(I52).toFixed(2);
 
         //POS Non-Tax Calculation (1 step, must be done after POS Tax Adjustment)
-        I62 = (I28 - D28) - parseFloat(D56).toFixed(2);
+        I62 = I28 - D28 - parseFloat(D56).toFixed(2);
         I58 = Math.max(0, I62);
-        posNonTaxAdj[textType] = '$' + parseFloat(I58).toFixed(2);
-        posNonTaxAdjSide[textType] = '$' + parseFloat(I58).toFixed(2)
+        posNonTaxAdj[textType] = "$" + parseFloat(I58).toFixed(2);
+        posNonTaxAdjSide[textType] = "$" + parseFloat(I58).toFixed(2);
         //!SECTION
 
-        //SECTION Results Sidebars
+        //SECTION Results Sidebars and Auto Substitute
         //If the result shows you needing to substitute over Rosie, auto open the substitution box for the first item on the pick list and fills in "000000064" for you.
-        //From there, just enter 0 or 1 depending on the type of adjustment shown on the side.
-        //TODO: Figure out how to have the ".val" attribute send with the API call to have it search automatically. Currently it puts it in the input box but doesn't update the data attribute. No clue why. Thanks jQuery.
+        //From there, have the end user enter 0 or 1 depending on the type of adjustment shown on the side.
+
+        //TODO: Figure out how to have the ".val" attribute send with the API call to have it search automatically.
+        //Currently it puts it in the input box but doesn't update the data attribute. No clue why. Blame jQuery.
+
+        //TODO Detect if first slot is BEER/TOBACCO so the sub box won't open on that item.
+
         if (rosNonTax > 0 || rosTax > 0) {
             clickTargetButton($(
-                '#main-content-region > div > div.pick-list-container > div > div.pick-list-body > div > div > div.panel-content > div > div.line-item-list-container > radiogroup > label:nth-child(1)'
+                "#main-content-region > div > div.pick-list-container > div > div.pick-list-body > div > div > div.panel-content        > div > div.line-item-list-container > radiogroup > label:nth-child(1)"
             ));
-            if (document.getElementById('enable') != null) {
-                clickTargetButton($('#enable'));
+            if (document.getElementById("enable") != null) {
+                clickTargetButton($("#enable"));
                 clickTargetButton($(
-                    '#modal-manager-region > div > div.modal.modal-visible > div.modal-content-container > div > div.button-row-section > div > div > div.loading-button.button.primary > span'
+                    "#modal-manager-region > div > div.modal.modal-visible > div.modal-content-container > div > div.button-row-section > div > div > div.loading-button.button.primary > span"
                 ));
                 openSub = true;
             } else {
-                clickTargetButton($('#sub'));
+                clickTargetButton($("#sub"));
                 openSub = true;
             }
             rosSubstitute(rosNonTaxAdjSide.innerHTML, rosTaxAdjSide.innerHTML);
 
-            //Hide side results if substitution model isn't active
+            //Hide side results if prices match
             funResHide = setInterval(resHide, 200);
 
             function resHide() {
                 if (I52 > 0 || I58 > 0) {
                     divHidL.style.display = "flex";
+                    if (I52 > 0) {
+                        divPosTaxCol.style.color = "#FF0000";
+                    } else {
+                        divPosTaxCol.style.color = "";
+                    }
+                    if (I58 > 0) {
+                        divPosNonTaxCol.style.color = "#FF0000";
+                    } else {
+                        divPosNonTaxCol.style.color = "";
+                    }
                 } else if (I52 === 0 && I58 === 0) {
+                    divPosTaxCol.style.color = "";
+                    divPosNonTaxCol.style.color = "";
                     divHidL.style.display = "none";
+                }
+
+                if (D52 > 0 || D58 > 0) {
+                    if (D52 > 0) {
+                        divRosTaxCol.style.color = "#FF0000";
+                    } else {
+                        divRosTaxCol.style.color = "";
+                    }
+                    if (D58 > 0) {
+                        divRosNonTaxCol.style.color = "#FF0000";
+                    } else {
+                        divRosNonTaxCol.style.color = "";
+                    }
                 }
             }
             if (document.getElementsByClassName('substitutions-modal').length != 0) {
@@ -230,6 +286,7 @@
         clickTargetButton($(
             '#modal-manager-region > div > div.modal.modal-visible > div.modal-content-container > div > div.modal-cards.paper > div:nth-child(2) > div.search-card-container > div > div > div > div.input-field-container > div > input[type=text]'
         ));
+
         $('#modal-manager-region > div > div.modal.modal-visible > div.modal-content-container > div > div.modal-cards.paper > div:nth-child(2) > div.search-card-container > div > div > div > div.input-field-container > div > input[type=text]')
             .val("000000064");
         //clickTargetButton($('#modal-manager-region > div > div.modal.modal-visible > div.modal-content-container > div > div.modal-cards.paper > div:nth-child(2) > div.search-card-container > div > div > div > div.search-button-container > div > span'));
@@ -240,8 +297,8 @@
     //Use with clickTargetButton($('#id-of-button'));
 
     function clickTargetButton(jNode) {
-        var clickEvent = document.createEvent('MouseEvents');
-        clickEvent.initEvent('click', true, true);
+        var clickEvent = document.createEvent("MouseEvents");
+        clickEvent.initEvent("click", true, true);
         jNode[0].dispatchEvent(clickEvent);
     }
 </script>
