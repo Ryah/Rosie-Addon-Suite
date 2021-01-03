@@ -2,7 +2,7 @@
 // @name            Rosie Addons Suite
 // @namespace       http://ryah.org/
 // @match           https://retailers.rosieapp.com/*
-// @version         1.53
+// @version         1
 // @description     Addons for Rosie Retailers because the site needs improvement
 // @author          Ryan Adame
 // @require         https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js
