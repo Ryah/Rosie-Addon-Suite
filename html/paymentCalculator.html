@@ -71,27 +71,31 @@
     <div id="title">
         <p>[Rosie]</p>
     </div>
-    <h3>640</h3>
+    <h3 id="rosTaxLabel">640</h3>
     <div id="rosTaxColor">
         <h4 id="rosTaxAdjSide" name="r1">0</h4>
     </div>
     <hr style="width: 100px !important" />
-    <h3>641</h3>
+    <h3 id="rosNonTaxLabel">641</h3>
     <div id="rosNonTaxColor">
         <h4 id="rosNonTaxAdjSide" name="r1">0</h4>
     </div>
 </div>
 
 <div id="resultsL">
+
     <div id="title">
         <p>[POS]</p>
     </div>
-    <h3>Tax</h3>
+
+    <h3 id="posTaxLabel">Tax</h3>
     <div id="posTaxColor">
         <h4 id="posTaxAdjSide" name="r1">0</h4>
     </div>
+
     <hr style="width: 100px !important" />
-    <h3>Non-Tax</h3>
+
+    <h3 id="posNonTaxLabel">Non-Tax</h3>
     <div id="posNonTaxColor">
         <h4 id="posNonTaxAdjSide" name="r1">0</h4>
     </div>
@@ -168,6 +172,10 @@
         divRosNonTaxCol = document.getElementById("rosNonTaxColor");
         divPosTaxCol = document.getElementById("posTaxColor");
         divPosNonTaxCol = document.getElementById("posNonTaxColor");
+        divRosTaxLab = document.getElementById("rosTaxLabel")
+        divRosNonTaxLab = document.getElementById("rosNonTaxLabel")
+        divPosTaxLab = document.getElementById("posTaxLabel")
+        divPosNonTaxLab = document.getElementById("posNonTaxLabel")
         divHidR.style.display = "none";
         divHidL.style.display = "none";
         console.log("test");
@@ -244,30 +252,40 @@
                     divHidL.style.display = "flex";
                     if (I52 > 0) {
                         divPosTaxCol.style.color = "#FF0000";
+                        divPosTaxLab.style.color = "#FF0000";
                     } else {
                         divPosTaxCol.style.color = "";
+                        divPosTaxLab.style.color = "";
                     }
                     if (I58 > 0) {
                         divPosNonTaxCol.style.color = "#FF0000";
+                        divPosNonTaxLab.style.color = "#FF0000";
                     } else {
                         divPosNonTaxCol.style.color = "";
+                        divPosNonTaxLab.style.color = "";
                     }
                 } else if (I52 === 0 && I58 === 0) {
                     divPosTaxCol.style.color = "";
                     divPosNonTaxCol.style.color = "";
+                    divPosTaxLab.style.color = "";
+                    divPosNonTaxLab.style.color = "";
                     divHidL.style.display = "none";
                 }
 
                 if (D52 > 0 || D58 > 0) {
                     if (D52 > 0) {
                         divRosTaxCol.style.color = "#FF0000";
+                        divRosTaxLab.style.color = "#FF0000";
                     } else {
                         divRosTaxCol.style.color = "";
+                        divRosTaxLab.style.color = "";
                     }
                     if (D58 > 0) {
                         divRosNonTaxCol.style.color = "#FF0000";
+                        divRosNonTaxLab.style.color = "#FF0000";
                     } else {
                         divRosNonTaxCol.style.color = "";
+                        divRosNonTaxLab.style.color = "";
                     }
                 }
             }
