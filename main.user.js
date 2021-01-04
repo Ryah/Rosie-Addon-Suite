@@ -7,7 +7,6 @@
 // @author          Ryan Adame
 // @require         https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js
 // @require         https://raw.githubusercontent.com/Ryah/Rosie-Addon-Suite/main/js/waitForKeyElements_offline.js
-// @require         https://raw.githubusercontent.com/Ryah/Rosie-Addon-Suite/main/js/Rosie%20Addon%20Suite.js
 // @resource        payCalcHTML https://raw.githubusercontent.com/Ryah/Rosie-Addon-Suite/main/html/paymentCalculator.html
 // @resource        customCSS https://raw.githubusercontent.com/Ryah/Rosie-Addon-Suite/main/css/styles.css
 // @resource        orderHistBut https://raw.githubusercontent.com/Ryah/Rosie-Addon-Suite/main/html/orderHist.html
@@ -38,9 +37,7 @@ setInterval(() => {
         //console.log("dash = " + dash);
     } else {
         //alert("Something went wrong finding what page you're on. Error Code 8262.");
-        console.log(
-            "Something went wrong finding what page you're on. Error Code 8262."
-        );
+        console.log("Something went wrong finding what page you're on. Error Code 8262.");
     }
 }, 1000);
 
@@ -57,20 +54,16 @@ function timeConvert() {
         //If on Dashboard, counts the header-content classes for amount of orders.
         //If not on Dashboard, then sets default order count to 1.
         if (dash === true) {
-            console.log("On Dashboard, Counting orders.");
+            // console.log("On Dashboard, Counting orders.");
             var orders = document.querySelectorAll(
                 "#main-content-region .header-content"
             ).length;
         } else if (dash === false) {
-            console.log("On Order Page, Setting order var to 1.");
+            // console.log("On Order Page, Setting order var to 1.");
             var orders = 1;
         } else {
-            alert(
-                "Something went wrong grabbing orders. Error code 3625 in 24/12 Button Script."
-            );
-            console.log(
-                "Something went wrong grabbing orders. Error code 3625 in 24/12 Button Script."
-            );
+            // alert("Something went wrong grabbing orders. Error code 3625 in 24/12 Button Script.");
+            console.log("Something went wrong grabbing orders. Error code 3625 in 24/12 Button Script.");
         }
 
         //for loop wouldn't work ¯\_(ツ)_/¯
@@ -103,12 +96,8 @@ function timeConvert() {
                     .replaceWith("<b>" + timeString + " " + "|" + " " + "</b>");
                 changed = true; //Mark the time as converted to prevent the script converting a random string. It's a duct tape fix but it works 99% of the time so I'm not going to touch it.
             } else {
-                alert(
-                    "Something went wrong replacing the time. Error Code 2124 in 24/12 Button Script."
-                );
-                console.log(
-                    "Something went wrong replacing the time. Error Code 2124 in 24/12 Button Script."
-                );
+                // alert("Something went wrong replacing the time. Error Code 2124 in 24/12 Button Script.");
+                console.log("Something went wrong replacing the time. Error Code 2124 in 24/12 Button Script.");
             }
         }
         msg = false;
@@ -128,12 +117,8 @@ function timeConvert() {
                 var T = timeString2.substr(timeStart, timeEnd);
                 return T;
             } else {
-                alert(
-                    "Something went wrong grabbing the time. Error Code 1735 in 24/12 Button Script."
-                );
-                console.log(
-                    "Something went wrong grabbing the time. Error Code 1735 in 24/12 Button Script."
-                );
+                // alert("Something went wrong grabbing the time. Error Code 1735 in 24/12 Button Script.");
+                console.log("Something went wrong grabbing the time. Error Code 1735 in 24/12 Button Script.");
             }
         }
     }
@@ -144,91 +129,46 @@ function timeConvert() {
 /* -------------------------------------------------------------------------- */
 
 //Waits for loyality number to load before passing it to the orderImprove function.
-waitForKeyElements(
-    "#main-content-region > div > div.order-details-container > div.order-details-card.card > div.order-details > div:nth-child(4) > div.loyalty-info > div:nth-child(2) > div",
-    orderImprove
-);
+waitForKeyElements("#main-content-region > div > div.order-details-container > div.order-details-card.card > div.order-details > div:nth-child(4) > div.loyalty-info > div:nth-child(2) > div",orderImprove);
 
 function orderImprove(jNode) {
     //Add line breaks for better kerning.
-    $(
-        document.querySelector(
-            "#main-content-region > div > div.order-details-container > div > div.order-details > div:nth-child(4) > div.loyalty-info"
-        )
-    ).append(`<br>`);
+    $(document.querySelector("#main-content-region > div > div.order-details-container > div > div.order-details > div:nth-child(4) > div.loyalty-info")).append(`<br>`);
 
     // Format Loyality Number
     /*Uses regex to format the number and store it in propNum.
-      This took way too long to figure out. Why hasn't anyone made a simpler version of regex yet? I wrote the thing yet if you ask me how it works I will be just as confused as you are.
-      It shouldn't be the norm to have multiple generators out there for something that people use very often and have pretty much no viable substitute for.
-      Sure it's EXTREMELY versatile but the learning curve is like running into a brick wall. I've never heard someone go "Oh thank God I can use RegEx! I've been waiting for this moment! I'm so happy!"
-      Everyone hates it but for some reason as far as I know no one has sucessfully attempted to make an alternative for it. It makes me so sad.
-      Anyways that's my rant. */
-    num = document.querySelector(
-        "#main-content-region > div > div.order-details-container > div > div.order-details > div:nth-child(4) > div.loyalty-info > div:nth-child(2) > div"
-    ).innerHTML;
+    This took way too long to figure out. Why hasn't anyone made a simpler version of regex yet? I wrote the thing yet if you ask me how it works I will be just as confused as you are.
+    It shouldn't be the norm to have multiple generators out there for something that people use very often and have pretty much no viable substitute for.
+    Sure it's EXTREMELY versatile but the learning curve is like running into a brick wall. I've never heard someone go "Oh thank God I can use RegEx! I've been waiting for this moment! I'm so happy!"
+    Everyone hates it but for some reason as far as I know no one has sucessfully attempted to make an alternative for it. It makes me so sad.
+    Anyways that's my rant. */
+    num = document.querySelector("#main-content-region > div > div.order-details-container > div > div.order-details > div:nth-child(4) > div.loyalty-info > div:nth-child(2) > div").innerHTML;
     propNum = num.replace(/(\d{3})(\d{3})(\d{4})/, "($1) $2-$3");
 
     // Replace phone number with propNum.
-    console.log("Formatting Celebrate Number");
-    $(
-        document.querySelector(
-            "#main-content-region > div > div.order-details-container > div > div.order-details > div:nth-child(4) > div.loyalty-info > div:nth-child(2) > div"
-        )
-    )
-        .contents()
-        .filter(function () {
-            return this.nodeType == 3;
-        })
-        .last()
-        .replaceWith(propNum);
+    // console.log("Formatting Celebrate Number");
+    $(document.querySelector("#main-content-region > div > div.order-details-container > div > div.order-details > div:nth-child(4) > div.loyalty-info > div:nth-child(2) > div")).contents().filter(function () {
+        return this.nodeType == 3;
+    }).last().replaceWith(propNum);
 
     // Rename "Loyalty Number" to "Celebrate Number" for consistancy.
-    console.log('Renaming "Loyalty Number" to "Celebrate Number"');
-    $(
-        document.querySelector(
-            "#main-content-region > div > div.order-details-container > div > div.order-details > div:nth-child(4) > div.loyalty-info > div:nth-child(1) > div"
-        )
-    )
-        .contents()
-        .filter(function () {
-            return this.nodeType == 3;
-        })
-        .last()
-        .replaceWith("Celebrate Number");
+    // console.log('Renaming "Loyalty Number" to "Celebrate Number"');
+    $(document.querySelector("#main-content-region > div > div.order-details-container > div > div.order-details > div:nth-child(4) > div.loyalty-info > div:nth-child(1) > div")).contents().filter(function () {
+        return this.nodeType == 3;
+    }).last().replaceWith("Celebrate Number");
 
     // Remove "Cutoff Time" as it just causes confusion with pickup time.
-    console.log('Removing "Cutoff Time"');
-    $(
-        document.querySelector(
-            "#main-content-region > div > div.order-details-container > div > div.order-details > div:nth-child(4) > div:nth-child(5) > div"
-        )
-    ).remove();
-    $(
-        document.querySelector(
-            "#main-content-region > div > div.order-details-container > div > div.order-details > div:nth-child(4) > div:nth-child(6) > div"
-        )
-    ).remove();
+    // console.log('Removing "Cutoff Time"');
+    $(document.querySelector("#main-content-region > div > div.order-details-container > div > div.order-details > div:nth-child(4) > div:nth-child(5) > div")).remove();
+    $(document.querySelector("#main-content-region > div > div.order-details-container > div > div.order-details > div:nth-child(4) > div:nth-child(6) > div")).remove();
 
     // If Alternate Phone Number isn't present, remove it.
-    if (
-        document.querySelector(
-            "#main-content-region > div > div.order-details-container > div > div.order-details > div:nth-child(3) > div:nth-child(5) > div"
-        ).innerHTML.length === 7
-    ) {
-        console.log("No Alternate Phone Number found, removing");
-        document
-            .querySelector(
-                "#main-content-region > div > div.order-details-container > div > div.order-details > div:nth-child(3) > div:nth-child(4) > div"
-            )
-            .remove();
-        document
-            .querySelector(
-                "#main-content-region > div > div.order-details-container > div > div.order-details > div:nth-child(3) > div:nth-child(5) > div"
-            )
-            .remove();
+    if (document.querySelector("#main-content-region > div > div.order-details-container > div > div.order-details > div:nth-child(3) > div:nth-child(5) > div").innerHTML.length === 7) {
+        // console.log("No Alternate Phone Number found, removing");
+        document.querySelector("#main-content-region > div > div.order-details-container > div > div.order-details > div:nth-child(3) > div:nth-child(4) > div").remove();
+        document.querySelector("#main-content-region > div > div.order-details-container > div > div.order-details > div:nth-child(3) > div:nth-child(5) > div").remove();
     } else {
-        console.log("Alt Phone Number Found. Keeping ");
+        // console.log("Alt Phone Number Found. Keeping ");
     }
 }
 
