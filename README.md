@@ -7,6 +7,13 @@ Addons for Rosie Retailers because the site needs improvement
 
 - TODO: make a TODO list.
 
+## [1.591] - 2021-01-04
+
+### Changed
+
+- Main script no longer hosted on Github (dependencies are still loaded from Github)
+- Begin process to refactor code for next major update
+- Disabled Force Reload script to rework it.
 
 ## [1.59] - 2021-01-03
 
@@ -18,7 +25,7 @@ Addons for Rosie Retailers because the site needs improvement
 
 ### Removed
 
-- Unused copyright replacement at end of file.
+- Unused function at end of file.
 
 ## [1.58] - 2021-01-03
 
