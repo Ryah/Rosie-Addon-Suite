@@ -5,7 +5,8 @@ Addons for Rosie Retailers because the site needs improvement
 
 ## [Unreleased]
 
-- TODO: make a TODO list.
+- TODO: Refactor Code to prepare for expansion
+- TODO: Add Settings Menu
 
 
 ## [1.59] - 2021-01-03
