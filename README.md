@@ -1,11 +1,33 @@
-Addons for Rosie Retailers because the site needs improvement
+General QOL fixes for Rosie Retailers because the site needs improvement.
 
 
 # Version Changelog
 
 ## [Unreleased]
 
-- TODO: make a TODO list.
+- TODO: Make a TODO list.
+- TODO: Add an "Add Item" button to add a blank item to any order for substitutions on orders with only alcohol or tobacco (Rosie Bug-Fix) 
+- TODO: Add enter key submit on adding substitutions.
+
+
+## [1.592] - 2021-01-10
+
+### Added
+
+- 
+
+### Changed
+
+- Made Order History Button an actual button for better reliability.
+
+### Fixed
+
+- Fixed Force reload script so it only reloads if the message includes the phrase "successfully marked as ready". Previously it used length. You can see how inefficient that was.
+
+### Removed
+
+- 
+
 
 ## [1.591] - 2021-01-04
 

@@ -55,15 +55,13 @@ function timeConvert() {
         //If not on Dashboard, then sets default order count to 1.
         if (dash === true) {
             // console.log("On Dashboard, Counting orders.");
-            var orders = document.querySelectorAll(
-                "#main-content-region .header-content"
-            ).length;
+            var orders = document.querySelectorAll("#main-content-region .header-content").length;
         } else if (dash === false) {
             // console.log("On Order Page, Setting order var to 1.");
             var orders = 1;
         } else {
             // alert("Something went wrong grabbing orders. Error code 3625 in 24/12 Button Script.");
-            console.log("Something went wrong grabbing orders. Error code 3625 in 24/12 Button Script.");
+            console.log("Something went wrong grabbing orders. Error code 3625 in Time Conversion Script.");
         }
 
         //for loop wouldn't work ¯\_(ツ)_/¯
@@ -101,26 +99,26 @@ function timeConvert() {
             }
         }
         msg = false;
+    }
+}
 
-        function grabTime(j) {
-            if (dash === true) {
-                var timeString2 = document.querySelectorAll(".header-content")[j].innerHTML;
-                var timeStart = timeString2.indexOf("|") + 12;
-                var timeEnd = timeString2.indexOf(":") + 2;
-                var T = timeString2.substr(timeStart, timeEnd);
-                return T;
-            } else if (dash === false) {
-                //Add time to order page if on order page
-                var timeString2 = document.querySelectorAll("div:nth-child(4) > div:nth-child(3)")[2].innerHTML;
-                var timeStart = timeString2.indexOf(",") + 1;
-                var timeEnd = timeString2.indexOf(":") + 2;
-                var T = timeString2.substr(timeStart, timeEnd);
-                return T;
-            } else {
-                // alert("Something went wrong grabbing the time. Error Code 1735 in 24/12 Button Script.");
-                console.log("Something went wrong grabbing the time. Error Code 1735 in 24/12 Button Script.");
-            }
-        }
+function grabTime(j) {
+    if (dash === true) {
+        var timeString2 = document.querySelectorAll(".header-content")[j].innerHTML;
+        var timeStart = timeString2.indexOf("|") + 12;
+        var timeEnd = timeString2.indexOf(":") + 2;
+        var T = timeString2.substr(timeStart, timeEnd);
+        return T;
+    } else if (dash === false) {
+        //Add time to order page if on order page
+        var timeString2 = document.querySelectorAll("div:nth-child(4) > div:nth-child(3)")[2].innerHTML;
+        var timeStart = timeString2.indexOf(",") + 1;
+        var timeEnd = timeString2.indexOf(":") + 2;
+        var T = timeString2.substr(timeStart, timeEnd);
+        return T;
+    } else {
+        // alert("Something went wrong grabbing the time. Error Code 1735 in 24/12 Button Script.");
+        console.log("Something went wrong grabbing the time. Error Code 1735 in 24/12 Button Script.");
     }
 }
 
@@ -129,7 +127,7 @@ function timeConvert() {
 /* -------------------------------------------------------------------------- */
 
 //Waits for loyality number to load before passing it to the orderImprove function.
-waitForKeyElements("#main-content-region > div > div.order-details-container > div.order-details-card.card > div.order-details > div:nth-child(4) > div.loyalty-info > div:nth-child(2) > div",orderImprove);
+waitForKeyElements("#main-content-region > div > div.order-details-container > div.order-details-card.card > div.order-details > div:nth-child(4) > div.loyalty-info > div:nth-child(2) > div", orderImprove);
 
 function orderImprove(jNode) {
     //Add line breaks for better kerning.
@@ -199,12 +197,12 @@ function orderHistory() {
 var pcHTML = GM_getResourceText("payCalcHTML");
 
 setInterval(() => {
-        if (window.location.href.indexOf("dashboard") > -1) {
-            //do nothing i guess?
-        } else {
-            load = document.getElementById("payCalc");
-        }
-    }, 500);
+    if (window.location.href.indexOf("dashboard") > -1) {
+        //do nothing i guess?
+    } else {
+        load = document.getElementById("payCalc");
+    }
+}, 500);
 
 load = document.getElementById("payCalc");
 
@@ -231,14 +229,14 @@ function paymentCalc() {
 //Will work on a more complete solution at a later date.
 
 
-// waitForKeyElements("#main-toaster-region > div > div > div > div > span", forceReload);
+waitForKeyElements("#main-toaster-region > div > div > div > div > span", forceReload);
 
 
-// function forceReload() {
-//     if (document.querySelector("#main-toaster-region > div > div > div > div > span").innerText.indexOf("ready") > -1) {
-//         location.reload();
-//     }
-// }
+function forceReload() {
+    if (document.querySelector("#main-toaster-region > div > div > div > div > span").innerText.indexOf("successfully marked as ready") > -1) {
+        location.reload();
+    }
+}
 
 function checkContainer() {
     if ($(".footer-content").is(":visible")) {
@@ -250,12 +248,36 @@ function checkContainer() {
             })
             .last()
             .replaceWith(
-                        "© 2012-2020 Rosie Applications Inc. | <a href='https://www.ryah.org/'>Rosie Addons</a> | <a style='text-decoration:none' href='https://github.com/Ryah/Rosie-Addon-Suite'><img height='20' width='20' src='https://cdn.jsdelivr.net/npm/simple-icons@4.5.0/icons/github.svg' /></a>"
+                "© 2012-2020 Rosie Applications Inc. | <a href='https://www.ryah.org/'>Rosie Addons</a> | <a style='text-decoration:none' href='https://github.com/Ryah/Rosie-Addon-Suite'><img height='20' width='20' src='https://cdn.jsdelivr.net/npm/simple-icons@4.5.0/icons/github.svg' /></a>"
             );
     } else {
         setTimeout(checkContainer, 50);
     }
 }
+
+//Enter Key Submit on Substitution Modal
+
+// waitForKeyElements(".search-result-description-section", addEnterFunc);
+
+// function addEnterFunc() {
+//     console.log("Adding enter");
+//     var quantSubBox = document.querySelector('#modal-manager-region > div > div.modal.modal-visible > div.modal-content-container > div > div.modal-cards.paper > div:nth-child(2) > div.search-results-card-container > div > div.search-item-stickers-container > div > div > div.fill-section > div.fill-input-container > div > input[type=text]');
+//     quantSubBox.classList.add('quantSubBox');
+
+//     $('.quantSubBox').focus(function () {
+//         document.addEventListener("keyup", function (event) {
+//             if (event.keyCode === 13) {
+//                 // console.log("enter was pressed");
+//                 clickTargetButton('#modal-manager-region > div > div.modal.modal-visible > div.modal-content-container > div > div.modal-cards.paper > div:nth-child(2) > div.search-results-card-container > div > div.search-item-stickers-container > div > div > div.fill-section > div.action-button-container > div > span');
+//             }
+//         });
+//     });
+// };
+
+//Extra Functions
+
+
+
 
 /* -------------------------------------------------------------------------- */
 /*                                      Custom CSS                            */
