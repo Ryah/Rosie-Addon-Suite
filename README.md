@@ -14,7 +14,7 @@ General QOL fixes for Rosie Retailers because the site needs improvement.
 
 ### Added
 
-- 
+- Added "Add Blank Item" button (Not Functional Currently)
 
 ### Changed
 
@@ -26,7 +26,7 @@ General QOL fixes for Rosie Retailers because the site needs improvement.
 
 ### Removed
 
-- 
+- Enter Key Submit as it was too buggy. Will fix at a later date.
 
 
 ## [1.591] - 2021-01-04

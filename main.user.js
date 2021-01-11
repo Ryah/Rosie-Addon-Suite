@@ -177,7 +177,7 @@ addItem = GM_getResourceText("addItemBut");
 
 function orderHistory() {
     $(document.querySelector("#page-cap-region > div > div > div.buttons-container > div")).append(orderHist);
-    $(document.querySelector("#main-content-region > div > div.pick-list-container > div > div.pick-list-title > div.buttons-section")).append(addItem);
+    // $(document.querySelector("#main-content-region > div > div.pick-list-container > div > div.pick-list-title > div.buttons-section")).append(addItem);
 
 }
 
