@@ -6,8 +6,9 @@ General QOL fixes for Rosie Retailers because the site needs improvement.
 ## [Unreleased]
 
 - TODO: Make a TODO list.
-- TODO: Add an "Add Item" button to add a blank item to any order for substitutions on orders with only alcohol or tobacco (Rosie Bug-Fix) 
-- TODO: Add enter key submit on adding substitutions.
+- TODO: [IN-PROGRESS] Add an "Add Item" button to add a blank item to any order for substitutions on orders with only alcohol or tobacco (Rosie Bug-Fix) 
+
+- TODO: [ON-HOLD] Add enter key submit on adding substitutions.
 
 
 ## [1.592] - 2021-01-10
