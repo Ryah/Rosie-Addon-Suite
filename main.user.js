@@ -2,7 +2,7 @@
 // @name            Rosie Addons Suite
 // @namespace       http://ryah.org/
 // @match           https://retailers.rosieapp.com/*
-// @version         1.591
+// @version         1.592
 // @description     Addons for Rosie Retailers because the site needs improvement
 // @author          Ryan Adame
 // @require         https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js
@@ -10,6 +10,7 @@
 // @resource        payCalcHTML https://raw.githubusercontent.com/Ryah/Rosie-Addon-Suite/main/html/paymentCalculator.html
 // @resource        customCSS https://raw.githubusercontent.com/Ryah/Rosie-Addon-Suite/main/css/styles.css
 // @resource        orderHistBut https://raw.githubusercontent.com/Ryah/Rosie-Addon-Suite/main/html/orderHist.html
+// @resource        addItemBut file:///C:/Users/rosie0048/Desktop/RAS/Rosie-Addon-Suite/html/addItem.html
 // @grant           GM_addStyle
 // @grant           GM_getResourceText
 // ==/UserScript==
@@ -54,13 +55,10 @@ function timeConvert() {
         //If on Dashboard, counts the header-content classes for amount of orders.
         //If not on Dashboard, then sets default order count to 1.
         if (dash === true) {
-            // console.log("On Dashboard, Counting orders.");
             var orders = document.querySelectorAll("#main-content-region .header-content").length;
         } else if (dash === false) {
-            // console.log("On Order Page, Setting order var to 1.");
             var orders = 1;
         } else {
-            // alert("Something went wrong grabbing orders. Error code 3625 in 24/12 Button Script.");
             console.log("Something went wrong grabbing orders. Error code 3625 in Time Conversion Script.");
         }
 
@@ -94,7 +92,6 @@ function timeConvert() {
                     .replaceWith("<b>" + timeString + " " + "|" + " " + "</b>");
                 changed = true; //Mark the time as converted to prevent the script converting a random string. It's a duct tape fix but it works 99% of the time so I'm not going to touch it.
             } else {
-                // alert("Something went wrong replacing the time. Error Code 2124 in 24/12 Button Script.");
                 console.log("Something went wrong replacing the time. Error Code 2124 in 24/12 Button Script.");
             }
         }
@@ -162,12 +159,9 @@ function orderImprove(jNode) {
 
     // If Alternate Phone Number isn't present, remove it.
     if (document.querySelector("#main-content-region > div > div.order-details-container > div > div.order-details > div:nth-child(3) > div:nth-child(5) > div").innerHTML.length === 7) {
-        // console.log("No Alternate Phone Number found, removing");
         document.querySelector("#main-content-region > div > div.order-details-container > div > div.order-details > div:nth-child(3) > div:nth-child(4) > div").remove();
         document.querySelector("#main-content-region > div > div.order-details-container > div > div.order-details > div:nth-child(3) > div:nth-child(5) > div").remove();
-    } else {
-        // console.log("Alt Phone Number Found. Keeping ");
-    }
+    };
 }
 
 /* -------------------------------------------------------------------------- */
@@ -179,14 +173,14 @@ waitForKeyElements(
     orderHistory
 );
 orderHist = GM_getResourceText("orderHistBut");
+addItem = GM_getResourceText("addItemBut");
 
 function orderHistory() {
-    $(
-        document.querySelector(
-            "#page-cap-region > div > div > div.buttons-container > div"
-        )
-    ).append(orderHist);
+    $(document.querySelector("#page-cap-region > div > div > div.buttons-container > div")).append(orderHist);
+    $(document.querySelector("#main-content-region > div > div.pick-list-container > div > div.pick-list-title > div.buttons-section")).append(addItem);
+
 }
+
 
 /* -------------------------------------------------------------------------- */
 /*                                  Payment Calculator                        */
@@ -260,6 +254,12 @@ function checkContainer() {
 // waitForKeyElements(".search-result-description-section", addEnterFunc);
 
 // function addEnterFunc() {
+//     function clickTargetButton(jNode) {
+//         var clickEvent = document.createEvent("MouseEvents");
+//         clickEvent.initEvent("click", true, true);
+//         jNode[0].dispatchEvent(clickEvent);
+//     }
+
 //     console.log("Adding enter");
 //     var quantSubBox = document.querySelector('#modal-manager-region > div > div.modal.modal-visible > div.modal-content-container > div > div.modal-cards.paper > div:nth-child(2) > div.search-results-card-container > div > div.search-item-stickers-container > div > div > div.fill-section > div.fill-input-container > div > input[type=text]');
 //     quantSubBox.classList.add('quantSubBox');
@@ -267,8 +267,8 @@ function checkContainer() {
 //     $('.quantSubBox').focus(function () {
 //         document.addEventListener("keyup", function (event) {
 //             if (event.keyCode === 13) {
-//                 // console.log("enter was pressed");
-//                 clickTargetButton('#modal-manager-region > div > div.modal.modal-visible > div.modal-content-container > div > div.modal-cards.paper > div:nth-child(2) > div.search-results-card-container > div > div.search-item-stickers-container > div > div > div.fill-section > div.action-button-container > div > span');
+//                 console.log("enter was pressed");
+//                 clickTargetButton($('#modal-manager-region > div > div.modal.modal-visible > div.modal-content-container > div > div.modal-cards.paper > div:nth-child(2) > div.search-results-card-container > div > div.search-item-stickers-container > div > div > div.fill-section > div.action-button-container > div > span'));
 //             }
 //         });
 //     });
