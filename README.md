@@ -19,6 +19,8 @@ General QOL fixes for Rosie Retailers because the site needs improvement.
 
 - Fixed payment calculator filling "000000064" or showing adjustments when the first item has subs disabled and there is a substitution already on that item. Caused by code assuming the "Enable Subs" alert modal would always show up, causing the clickTargetButton function to try and click a button that doesn't exist. Now checks if the Enable Subs box appears or not.
 
+- Made Results for payment cal disappear if sub box is not visible.
+
 
 ## [1.592] - 2021-01-10
 

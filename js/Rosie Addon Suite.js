@@ -17,6 +17,11 @@ setInterval(() => {
             ouMsg = false;
         }
     } else if (window.location.href.indexOf("orders") > -1) {
+        alertSubVis = $('body').find('.substitutions-modal').length
+        if (alertSubVis === 0) {
+            divHidR.style.display = "none";
+            divHidL.style.display = "none";
+        };
         dash = false;
         //console.log("dash = " + dash);
     } else {
