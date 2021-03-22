@@ -6,9 +6,18 @@ General QOL fixes for Rosie Retailers because the site needs improvement.
 ## [Unreleased]
 
 - TODO: Make a TODO list.
+
 - TODO: [IN-PROGRESS] Add an "Add Item" button to add a blank item to any order for substitutions on orders with only alcohol or tobacco (Rosie Bug-Fix) 
 
 - TODO: [ON-HOLD] Add enter key submit on adding substitutions.
+
+
+## [1.6] - 2021-03-22
+
+
+### Fixed
+
+- Fixed payment calculator filling "000000064" or showing adjustments when the first item has subs disabled and there is a substitution already on that item. Caused by code assuming the "Enable Subs" alert modal would always show up, causing the clickTargetButton function to try and click a button that doesn't exist. Now checks if the Enable Subs box appears or not.
 
 
 ## [1.592] - 2021-01-10

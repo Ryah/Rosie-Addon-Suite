@@ -25,7 +25,7 @@ jQuery(document).ready(checkContainer);
 ouMsg = false;
 //Checks and store if you're on Dashboard or Order Page and stores in a boolean named "dash" every second
 //(yeah it's unoptimized but it's the best I got so deal with it)
-//UPDATE: It's no longer the best I got but I'm too lazy to update that spaghetti
+//UPDATE: It's no longer the best I got but I'm too lazy to change it
 setInterval(() => {
     if (window.location.href.indexOf("dashboard") > -1) {
         dash = true;
@@ -126,7 +126,7 @@ function grabTime(j) {
 //Waits for loyality number to load before passing it to the orderImprove function.
 waitForKeyElements("#main-content-region > div > div.order-details-container > div.order-details-card.card > div.order-details > div:nth-child(4) > div.loyalty-info > div:nth-child(2) > div", orderImprove);
 
-function orderImprove(jNode) {
+function orderImprove() {
     //Add line breaks for better kerning.
     $(document.querySelector("#main-content-region > div > div.order-details-container > div > div.order-details > div:nth-child(4) > div.loyalty-info")).append(`<br>`);
 
@@ -141,19 +141,16 @@ function orderImprove(jNode) {
     propNum = num.replace(/(\d{3})(\d{3})(\d{4})/, "($1) $2-$3");
 
     // Replace phone number with propNum.
-    // console.log("Formatting Celebrate Number");
     $(document.querySelector("#main-content-region > div > div.order-details-container > div > div.order-details > div:nth-child(4) > div.loyalty-info > div:nth-child(2) > div")).contents().filter(function () {
         return this.nodeType == 3;
     }).last().replaceWith(propNum);
 
     // Rename "Loyalty Number" to "Celebrate Number" for consistancy.
-    // console.log('Renaming "Loyalty Number" to "Celebrate Number"');
     $(document.querySelector("#main-content-region > div > div.order-details-container > div > div.order-details > div:nth-child(4) > div.loyalty-info > div:nth-child(1) > div")).contents().filter(function () {
         return this.nodeType == 3;
     }).last().replaceWith("Celebrate Number");
 
     // Remove "Cutoff Time" as it just causes confusion with pickup time.
-    // console.log('Removing "Cutoff Time"');
     $(document.querySelector("#main-content-region > div > div.order-details-container > div > div.order-details > div:nth-child(4) > div:nth-child(5) > div")).remove();
     $(document.querySelector("#main-content-region > div > div.order-details-container > div > div.order-details > div:nth-child(4) > div:nth-child(6) > div")).remove();
 
@@ -168,10 +165,7 @@ function orderImprove(jNode) {
 /*                                Customer Order History                      */
 /* -------------------------------------------------------------------------- */
 
-waitForKeyElements(
-    "#main-content-region > div > div.order-details-container > div.order-details-card.card > div.order-details > div:nth-child(2) > div:nth-child(5) > div",
-    orderHistory
-);
+waitForKeyElements("#main-content-region > div > div.order-details-container > div.order-details-card.card > div.order-details > div:nth-child(2) > div:nth-child(5) > div", orderHistory);
 orderHist = GM_getResourceText("orderHistBut");
 addItem = GM_getResourceText("addItemBut");
 
@@ -200,10 +194,7 @@ setInterval(() => {
 
 load = document.getElementById("payCalc");
 
-waitForKeyElements(
-    "#main-content-region > div > div.order-details-container > div > div.order-details > div.details-column.money > div:nth-child(4) > div.content",
-    paymentCalc
-);
+waitForKeyElements("#main-content-region > div > div.order-details-container > div > div.order-details > div.details-column.money > div:nth-child(4) > div.content", paymentCalc);
 
 function paymentCalc() {
     if (window.location.href.indexOf("orders") > -1) {

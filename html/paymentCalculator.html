@@ -230,9 +230,10 @@
             ));
             if (document.getElementById("enable") != null) {
                 clickTargetButton($("#enable"));
-                clickTargetButton($(
-                    "#modal-manager-region > div > div.modal.modal-visible > div.modal-content-container > div > div.button-row-section > div > div > div.loading-button.button.primary > span"
-                ));
+                if ($('body').find('.alert-modal').length) {
+		            console.log("Enable Subs Confirmation Box");
+                    clickTargetButton($("#modal-manager-region > div > div.modal.modal-visible > div.modal-content-container > div > div.button-row-section > div > div > div.loading-button.button.primary > span"));
+	            }
                 openSub = true;
             } else {
                 clickTargetButton($("#sub"));
