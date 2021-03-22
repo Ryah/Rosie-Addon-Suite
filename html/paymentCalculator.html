@@ -58,7 +58,7 @@
     </div>
     <div id="calcButton">
         <input type="button" value="Calculate Price Adjustment" onclick="calc()">
-    
+
     </div>
 
 </div>
@@ -95,6 +95,8 @@
         <h4 id="posNonTaxAdjSide" name="r1">0</h4>
     </div>
 </div>
+
+<!-- <script src="https://raw.githubusercontent.com/Ryah/Rosie-Addon-Suite/main/js/waitForKeyElements_offline.js"></script> -->
 
 <script>
     textType = Node.textContent ? 'textContent' : 'innerText',
@@ -228,9 +230,10 @@
             ));
             if (document.getElementById("enable") != null) {
                 clickTargetButton($("#enable"));
-                clickTargetButton($(
-                    "#modal-manager-region > div > div.modal.modal-visible > div.modal-content-container > div > div.button-row-section > div > div > div.loading-button.button.primary > span"
-                ));
+                if ($('body').find('.alert-modal').length) {
+		            console.log("Enable Subs Confirmation Box");
+                    clickTargetButton($("#modal-manager-region > div > div.modal.modal-visible > div.modal-content-container > div > div.button-row-section > div > div > div.loading-button.button.primary > span"));
+	            }
                 openSub = true;
             } else {
                 clickTargetButton($("#sub"));

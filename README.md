@@ -1,12 +1,43 @@
-Addons for Rosie Retailers because the site needs improvement
+General QOL fixes for Rosie Retailers because the site needs improvement.
 
 
 # Version Changelog
 
-## [Unreleased]
+## [TO-DO]
 
-- TODO: Refactor Code to prepare for expansion
-- TODO: Add Settings Menu
+- TODO: Make a TODO list.
+
+- TODO: [IN-PROGRESS] Add an "Add Item" button to add a blank item to any order for substitutions on orders with only alcohol or tobacco (Rosie Bug-Fix) 
+
+- TODO: [ON-HOLD] Add enter key submit on adding substitutions.
+
+
+## [1.6] - 2021-03-22
+
+
+### Fixed
+
+- Fixed payment calculator filling "000000064" or showing adjustments when the first item has subs disabled and there is a substitution already on that item. Caused by code assuming the "Enable Subs" alert modal would always show up, causing the clickTargetButton function to try and click a button that doesn't exist. Now checks if the Enable Subs box appears or not.
+
+
+## [1.592] - 2021-01-10
+
+### Added
+
+- Added "Add Blank Item" button (Not Functional Currently)
+
+### Changed
+
+- Made Order History Button an actual button for better reliability.
+
+### Fixed
+
+- Fixed Force reload script so it only reloads if the message includes the phrase "successfully marked as ready". Previously it used length. You can see how inefficient that was.
+
+### Removed
+
+- Enter Key Submit as it was too buggy. Will fix at a later date.
+
 
 ## [1.591] - 2021-01-04
 
