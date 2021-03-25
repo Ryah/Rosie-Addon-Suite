@@ -1,15 +1,27 @@
-General QOL fixes for Rosie Retailers because the site needs improvement.
+QOL fixes for Rosie Retailers because the site needs improvement.
 
+# Features
+- 24 -> 12 hour time converter
+- Built-in Payment Calculator with Auto Substitution
+- Payment Calculator results display on side of page when substitution modal is open for easier input
+- Auto Refresh on order complete
+- Remove Unnecessary Information on Order Page
+- Loyality Number Formatter
+- General Kerning and Design Fixes
 
-# Version Changelog
 
 ## [TO-DO]
 
 - TODO: Make a TODO list.
 
+- TODO: [IN-PROGRESS] Map out Rosie API for easier access to advanced functions
+
 - TODO: [IN-PROGRESS] Add an "Add Item" button to add a blank item to any order for substitutions on orders with only alcohol or tobacco (Rosie Bug-Fix) 
 
 - TODO: [ON-HOLD] Add enter key submit on adding substitutions.
+
+
+# Version Changelog
 
 
 ## [1.6] - 2021-03-22
@@ -17,9 +29,9 @@ General QOL fixes for Rosie Retailers because the site needs improvement.
 
 ### Fixed
 
-- Fixed payment calculator filling "000000064" or showing adjustments when the first item has subs disabled and there is a substitution already on that item. Caused by code assuming the "Enable Subs" alert modal would always show up, causing the clickTargetButton function to try and click a button that doesn't exist. Now checks if the Enable Subs box appears or not.
+- Fixed payment calculator not filling "000000064" or showing adjustments when the first item has subs disabled and there is a substitution already on that item. Caused by code assuming the "Enable Subs" alert modal would always show up, causing the clickTargetButton function to try and click a button that doesn't exist. Now checks if the Enable Subs box appears or not and reacts accordingly.
 
-- Made Results for payment cal disappear if sub box is not visible.
+- Made Results for payment calculator disappear if sub box is not visible.
 
 
 ## [1.592] - 2021-01-10
