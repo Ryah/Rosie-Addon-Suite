@@ -21,6 +21,12 @@ QOL fixes for Rosie Retailers because the site needs improvement.
 - TODO: [ON-HOLD] Add enter key submit on adding substitutions.
 
 
+# Installation
+1) Install the extension Tampermonkey
+2) [Click Here to install the script](https://github.com/Ryah/Rosie-Addon-Suite/raw/main/main.user.js)
+3) ???
+4) Profit
+
 # Version Changelog
 
 
