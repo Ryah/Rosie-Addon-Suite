@@ -37,6 +37,7 @@ QOL fixes for Rosie Retailers because the site needs improvement.
 
 - Time Conversion no longer breaks string when switching tabs.
 
+
 ## [1.6] - 2021-03-22
 
 
