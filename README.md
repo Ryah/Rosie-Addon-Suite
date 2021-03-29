@@ -12,13 +12,10 @@ QOL fixes for Rosie Retailers because the site needs improvement.
 
 ## [TO-DO]
 
-- TODO: Make a TODO list.
+- TODO: Fix Bug in Payment Calculator where pressing "Review" then going back to the picklist makes the calculator not load. Possible rogue checking variable. Who knows, this whole thing is suct taped together anyways.
 
-- TODO: [IN-PROGRESS] Map out Rosie API for easier access to advanced functions
+- TODO: Stylize Pickup/Delivery Slot
 
-- TODO: [IN-PROGRESS] Add an "Add Item" button to add a blank item to any order for substitutions on orders with only alcohol or tobacco (Rosie Bug-Fix) 
-
-- TODO: [ON-HOLD] Add enter key submit on adding substitutions.
 
 
 # Installation
@@ -29,6 +26,16 @@ QOL fixes for Rosie Retailers because the site needs improvement.
 
 # Version Changelog
 
+
+## [1.61] - 2021-03-28
+
+### Added
+
+- Show next Pickup Slot for easier time management
+
+### Fixed
+
+- Time Conversion no longer breaks string when switching tabs.
 
 ## [1.6] - 2021-03-22
 
