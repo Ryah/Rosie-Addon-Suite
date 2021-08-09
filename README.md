@@ -1,4 +1,4 @@
-QOL fixes for Rosie Retailers because the site needs improvement.
+QOL fixes for Rosie Retailers because the site needs improvement and I (used) to use it for work.
 
 # Features
 - 24 -> 12 hour time converter
