@@ -12,7 +12,7 @@ QOL fixes for Rosie Retailers because the site needs improvement.
 
 ## [TO-DO]
 
-- TODO: Fix Bug in Payment Calculator where pressing "Review" then going back to the picklist makes the calculator not load. Possible rogue checking variable. Who knows, this whole thing is suct taped together anyways.
+- TODO: Fix Bug in Payment Calculator where pressing "Review" then going back to the picklist makes the calculator not load. Possible rogue checking variable. Who knows, this whole thing is duct taped together anyways.
 
 - TODO: Stylize Pickup/Delivery Slot
 
