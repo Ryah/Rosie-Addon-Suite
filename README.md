@@ -11,6 +11,13 @@ General QOL fixes for Rosie Retailers because the site needs improvement.
 
 - TODO: [ON-HOLD] Add enter key submit on adding substitutions.
 
+## [1.0.7] - 2021-03-22
+
+
+### Fixed
+
+- Updated dev branch to latest version of main
+- [Pickup Time Slot now shows 9:00AM instead of 9:00PM after the department closes at 3:00PM](https://github.com/Ryah/Rosie-Addon-Suite/commit/da4572f1fa18567982b1e23a7f55d0ed9bda40c3#diff-e0cc54f7ab043967b2920a5d2f0cb24d76923d80d1ec640ce8426ce1b10d6e8aR232-R235)
 
 ## [1.6] - 2021-03-22
 
