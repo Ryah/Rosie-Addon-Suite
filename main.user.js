@@ -2,7 +2,7 @@
 // @name            Rosie Addons Suite
 // @namespace       http://ryah.org/
 // @match           https://retailers.rosieapp.com/*
-// @version         1.592
+// @version         1.0.7
 // @description     Addons for Rosie Retailers because the site needs improvement
 // @author          Ryan Adame
 // @require         https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js
@@ -10,7 +10,6 @@
 // @resource        payCalcHTML https://raw.githubusercontent.com/Ryah/Rosie-Addon-Suite/main/html/paymentCalculator.html
 // @resource        customCSS https://raw.githubusercontent.com/Ryah/Rosie-Addon-Suite/main/css/styles.css
 // @resource        orderHistBut https://raw.githubusercontent.com/Ryah/Rosie-Addon-Suite/main/html/orderHist.html
-// @resource        addItemBut file:///C:/Users/rosie0048/Desktop/RAS/Rosie-Addon-Suite/html/addItem.html
 // @grant           GM_addStyle
 // @grant           GM_getResourceText
 // ==/UserScript==
@@ -33,8 +32,13 @@ setInterval(() => {
         if (ouMsg == true) {
             ouMsg = false;
         }
+        loadOrderTime = document.getElementById("orderTime");
+        if (typeof loadOrderTime != "undefined" && loadTime === null) {
+            nextTimeSlot();
+        }
     } else if (window.location.href.indexOf("orders") > -1) {
         dash = false;
+        loadTime = document.getElementById("nextTimeLoad");
         //console.log("dash = " + dash);
     } else {
         //alert("Something went wrong finding what page you're on. Error Code 8262.");
@@ -46,12 +50,13 @@ setInterval(() => {
 /*                     24 hour to 12 hour conversion button               */
 /* --------------------------------------------------------------------------- */
 
-waitForKeyElements(".orders-table-container", timeConvert);
+waitForKeyElements("#main-content-region > div > div > div.working-orders-container > div > div.orders-tabbed-panel-container > div > div.panel-content > div > div > div > div.batch-sections-container > div > div:nth-child(1) > div.table-row > div > span", timeConvert);
 
-changed = false; //Set variable to mark replacement since I can't think of another way to detect if the time has changed or not :)
+//changed = false; //Set variable to mark replacement since I can't think of another way to detect if the time has changed or not :)
 
 function timeConvert() {
-    if (changed === false) {
+    //if (changed === false) {
+    if (document.querySelectorAll(".convertedTime").length <= 0) {
         //If on Dashboard, counts the header-content classes for amount of orders.
         //If not on Dashboard, then sets default order count to 1.
         if (dash === true) {
@@ -90,6 +95,7 @@ function timeConvert() {
                     })
                     .first()
                     .replaceWith("<b>" + timeString + " " + "|" + " " + "</b>");
+                //.prepend("<b class='convertedTime'>" + timeString + " " + "|"+ "</b>");
                 changed = true; //Mark the time as converted to prevent the script converting a random string. It's a duct tape fix but it works 99% of the time so I'm not going to touch it.
             } else {
                 console.log("Something went wrong replacing the time. Error Code 2124 in 24/12 Button Script.");
@@ -167,7 +173,7 @@ function orderImprove() {
 
 waitForKeyElements("#main-content-region > div > div.order-details-container > div.order-details-card.card > div.order-details > div:nth-child(2) > div:nth-child(5) > div", orderHistory);
 orderHist = GM_getResourceText("orderHistBut");
-addItem = GM_getResourceText("addItemBut");
+// addItem = GM_getResourceText("addItemBut");
 
 function orderHistory() {
     $(document.querySelector("#page-cap-region > div > div > div.buttons-container > div")).append(orderHist);
@@ -192,18 +198,57 @@ setInterval(() => {
     }
 }, 500);
 
-load = document.getElementById("payCalc");
+loadPayCalc = document.getElementById("payCalc");
 
 waitForKeyElements("#main-content-region > div > div.order-details-container > div > div.order-details > div.details-column.money > div:nth-child(4) > div.content", paymentCalc);
 
 function paymentCalc() {
     if (window.location.href.indexOf("orders") > -1) {
-        if (typeof load != "undefined" && load === null) {
+        if (typeof loadPayCalc != "undefined" && loadPayCalc === null) {
             $(document.querySelector("#main-content-region > div > div.order-details-container")).append(pcHTML);
-            load = true;
+            loadPayCalc = true;
         }
     }
 }
+
+
+/* -------------------------------------------------------------------------- */
+/*                            Show Next Available Timeslot                    */
+/* -------------------------------------------------------------------------- */
+waitForKeyElements("#page-cap-region > div > div > div.buttons-container > div > div.loading-button.button.secondary > div > div", nextTimeSlot);
+
+loadTime = document.getElementById("orderTime");
+
+function nextTimeSlot() {
+    if (window.location.href.indexOf("dashboard") > -1) {
+        if (typeof loadTime != "undefined" && loadTime != null) {
+            document.getElementById("orderTime").remove();
+        }
+        var today = new Date();
+        var pickupTimeStart = today.getHours() + 5;
+        var pickupTimeEnd = today.getHours() + 6;
+        var pickupTimeConvertStart = pickupTimeStart % 12 || 12;
+        var pickupTimeConvertEnd = pickupTimeEnd % 12 || 12;
+        if (pickupTimeStart > 19 || pickupTimeStart < 5) {
+            var pickupTimeConvertStart = 9;
+            var pickupTimeStart = 9;
+        }
+        if (pickupTimeStart > 12) {
+            var pickupTimeConvertStart = pickupTimeConvertStart + ":00 PM";
+        } else {
+            var pickupTimeConvertStart = pickupTimeConvertStart + ":00 AM";
+        }
+        if (pickupTimeEnd > 12) {
+            var pickupTimeConvertEnd = pickupTimeConvertEnd + ":00 PM";
+        } else {
+            var pickupTimeConvertEnd = pickupTimeConvertEnd + ":00 AM";
+        }
+        $(document.querySelector("#main-content-region > div > div > div.new-orders-container")).prepend('<div id="orderTime" class="dashboard card"><b class="nextTimeLoad">Next Pickup Slot: <b style="color: rgb(0, 149, 169);">' + pickupTimeConvertStart + '</b></b></div>');
+        loadTime = true;
+    }
+}
+
+
 
 /* -------------------------------------------------------------------------- */
 /*                          Reload Dashboard upon Order Ready                 */
