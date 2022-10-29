@@ -1,5 +1,7 @@
 QOL fixes for Rosie Retailers because the site needs improvement and I (used) to use it for work.
 
+Now just being kept as an archive as I can't legally test this script. Will keep it up incase any other stores want to use it. All I ask is you keep the credits at the bottom and contact me letting me know.
+
 # Features
 - 24 -> 12 hour time converter
 - Built-in Payment Calculator with Auto Substitution
